@@ -1,0 +1,9 @@
+
+@import url(https://unpkg.com/bootstrap@4.1.0/dist/css/bootstrap.min.css);
+.albin {
+    background-image: url("https://co0069yjui-flywheel.netdna-ssl.com/wp-content/uploads/2017/05/Beaver-dam-in-sunset.jpg");
+}
+
+body {
+    min-height: 100vh;
+}
