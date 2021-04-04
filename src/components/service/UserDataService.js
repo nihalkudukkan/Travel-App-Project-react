@@ -21,6 +21,10 @@ class UserDataService {
     verifyEmail(email){
         return axios.get(`${COURSE_API_URL}/user/email/${email}`)
     }
+
+    updateUser(User){
+        return axios.put(`${COURSE_API_URL}/addUser`, User)
+    }
     // retrieveCourse(name, id) {
     //     //console.log('executed service')
     //     return axios.get(`${INSTRUCTOR_API_URL}/courses/${id}`);

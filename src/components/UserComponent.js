@@ -13,7 +13,7 @@ class UserComponent extends Component {
         }
 
         this.onSubmit = this.onSubmit.bind(this)
-        this.validate = this.validate.bind(this)
+        // this.validate = this.validate.bind(this)
 
     }
 
@@ -40,8 +40,9 @@ class UserComponent extends Component {
                                             .then(
                                                 res=>{
                                                     if(res.data===null){
-                                                        UserDataService.createUser(user)
-                                                            .then(() => this.props.history.push('/'))
+                                                        UserDataService.createUser(user);
+                                                        alert('Profile Created');
+                                                        this.props.history.push('/');
                                                     } else{alert("This phone number has already registered");}
                                                 }
                                             )
@@ -58,17 +59,17 @@ class UserComponent extends Component {
         //         .then(() => this.props.history.push('/'))
     }
 
-    validate(values) {
-        let errors = {}
-        if (!values.username) {
-            errors.description = 'Enter a username'
-        } else if (values.username.length < 3) {
-            errors.description = 'Enter atleast 3 Characters in Description'
-        }
+    // validate(values) {
+    //     let errors = {}
+    //     if (!values.username) {
+    //         errors.description = 'Enter a username'
+    //     } else if (values.username.length < 3) {
+    //         errors.description = 'Enter atleast 3 Characters in Description'
+    //     }
 
-        return errors;
+    //     return errors;
 
-    }
+    // }
 
     render() { 
         let { username, password } = this.state
@@ -91,11 +92,17 @@ class UserComponent extends Component {
                                         className="alert alert-warning" />
                                     <fieldset className="form-group">
                                         <p>Username</p>
-                                        <Field className="form-control" type="text" name="username" required/>
+                                        <Field className="form-control" type="text" name="username" pattern="[A-Za-z]{3,}" required/>
+                                        <p className="text-muted">
+                                        Atleast 3 Characters required (letters or numbers)
+                                        </p>
                                     </fieldset>
                                     <fieldset className="form-group">
                                         <p>Password</p>
-                                        <Field className="form-control" type="password" name="password" required/>
+                                        <Field className="form-control" type="password" name="password" pattern=".{6,}" required/>
+                                        <p className="text-muted">
+                                        Atleast 6 Characters
+                                        </p>
                                     </fieldset>
                                     
                                     {/* edits */}
@@ -109,11 +116,14 @@ class UserComponent extends Component {
                                         <Field className="form-control" type="tel" name="phone" pattern="[0-9]{10}" required/>
                                     </fieldset>
                                     {/* edits */}
-                                    <button className="btn btn-success" type="submit">Save</button>
+                                    <button className="btn btn-success mb-4" type="submit">Save</button>
                                 </Form>
                             )
                         }
                     </Formik>
+
+                    <p>Already Registered?</p>
+                    <button onClick={()=>{this.props.history.push(`/`)}} className="btn btn-primary mb-5" >Login</button>
 
                 </div>
             </div>

@@ -44,6 +44,8 @@ class UserInfo extends Component {
             )
     }
 
+    // saveChanges()
+
     onSubmit(values) {
         let user = {
             username: values.username,
@@ -51,34 +53,40 @@ class UserInfo extends Component {
             email: values.email,
             phone: values.phone,
         }
-        alert('A name was submitted: ');
-        this.state.Categories.map(
-            i => {
-                console.log(i.email)
-            }
-        )
+        // this.state.Categories.map(
+        //     i => {
+        //         console.log(i.email)
+        //     }
+        // )
+        // this.saveChanges(values.username);
+        // alert('A name was submitted: ');
+        console.log(values.email);
+        console.log(user.email);
+
     }
 
-    // validate(values) {
-    //     let errors = {}
-    //     if (!values.username) {
-    //         errors.description = 'Enter a username'
-    //     } else if (values.username.length < 3) {
-    //         errors.description = 'Enter atleast 3 Characters in Description'
-    //     }
+    validate(values) {
+        let errors = {}
+        if (this.state.data.username) {
+            alert("check");
+            errors.description = 'Enter a username';
+        } else if (values.username.length < 3) {
+            alert("check1");
+            errors.description = 'Enter atleast 3 Characters in Description'
+        }
 
-    //     return errors;
+        return errors;
 
-    // }
+    }
 
     render() { 
-        let { username, password } = this.state
+        let { name } = this.state
         return (
             <div>
                 <h3 className="d-flex justify-content-center">Edit Your Profile</h3>
                 <div className="container">
                     <Formik
-                        initialValues={{ username, password }}
+                        initialValues={{ name }}
                         onSubmit={this.onSubmit}
                         validateOnChange={false}
                         validateOnBlur={false}
