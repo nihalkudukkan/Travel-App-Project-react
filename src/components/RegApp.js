@@ -7,6 +7,9 @@ import UserComponent from './UserComponent';
 import UserInfo from './UserInfo';
 import Welcome from './Welcome';
 import UserDetails from './UserDetails';
+import Notification from './Notification';
+import MyTravelPlan from './MyTravelPlan';
+import CreatePlan from './CreatePlan';
 
 class RegApp extends Component {
     render() { 
@@ -21,6 +24,9 @@ class RegApp extends Component {
                         <Route path="/userinfo/:name" component={UserInfoChange} />
                         <Route path="/homemain/:name" component={HomeMain} />
                         <Route path="/user/:name" component={UserDetails} />
+                        <Route path="/notification/:name" component={Notification}/>
+                        <Route path="/mytravelplan/:name" component={MyTravelPlan}/>
+                        <Route path="/createTravelPlan/:name" component={CreatePlan}/>
                     </Switch>
                 </>
             </Router>

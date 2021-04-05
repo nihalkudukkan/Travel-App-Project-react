@@ -33,11 +33,18 @@ class HomeMain extends Component {
     EditUserClicked(name){
       this.props.history.push(`/userinfo/${name}`);
     }
-    CreateUserClicked(){
-        this.props.history.push(`/`)
+    CreatePlanClicked(name){
+        this.props.history.push(`/createTravelPlan/${name}`)
     }
     EditInfoClicked(name){
         this.props.history.push(`/user/${name}`);
+    }
+    notification(name){
+      // console.log(name);
+      this.props.history.push(`/notification/${name}`)
+    }
+    yourPlan(name){
+      this.props.history.push(`/mytravelplan/${name}`)
     }
     
     render() {
@@ -46,16 +53,19 @@ class HomeMain extends Component {
             <div className="container">
                 
                 <div className="container">
-                  <div className="d-flex justify-content-between">
+                  <div className="d-flex justify-content-between mb-4">
                 <button className="btn btn-success" onClick={() => this.EditInfoClicked(this.state.name)}><img src="https://photo620x400.mnstatic.com/c4c05ab1a0cf201dabb21e4c75261a2b/barcolana-regatta.jpg" alt='' width="30px" height="30px" /> </button>
                  
                 <button className="btn btn-secondary" onClick={() => this.EditUserClicked(this.state.name)}>   Edit Profile   </button>
                 
-                <button className="btn btn-primary" onClick={() => this.CreateUserClicked()}>Create Travel Plan</button>
-                <button className="btn btn-info" onClick={() => this.CreateUserClicked()}>Your Plans</button>
+                
                 <button className="btn btn-warning" onClick={() => this.LogOutUserClicked()}>Log Out</button>
                 </div>
-                <h1>welcome {this.state.name}</h1>
+                <div className="d-flex justify-content-around mb-5"><button className="btn btn-primary" onClick={() => this.CreatePlanClicked(this.state.name)}>Create Travel Plan</button>
+                <button className="btn btn-info" onClick={() => this.yourPlan(this.state.name)}>Your Plans</button>
+                <button onClick={()=>this.notification(this.state.name)} className="btn alert-primary" >Notification</button>
+                </div>
+                <h1>Welcome {this.state.name}</h1>
                 
                     <table className="table">
                         <thead>
@@ -69,6 +79,7 @@ class HomeMain extends Component {
                                 <th>Start date</th>
                                 <th>Activities</th>
                                 <th>No of participants</th>
+                                <th>Cost</th>
                                 
 
                             </tr>
@@ -86,6 +97,7 @@ class HomeMain extends Component {
                                             <td>{user.startDt}</td>
                                             <td>{user.activities}</td>
                                             <td>{user.participants}</td>
+                                            <td>{user.cost}</td>
                                         </tr>
                                 )
                             }
