@@ -37,8 +37,7 @@ class HomeMain extends Component {
         this.props.history.push(`/`)
     }
     EditInfoClicked(name){
-        console.log(name);
-        this.props.history.push(`/userinfo/${name}`);
+        this.props.history.push(`/user/${name}`);
     }
     
     render() {
@@ -47,12 +46,15 @@ class HomeMain extends Component {
             <div className="container">
                 
                 <div className="container">
-                <button className="btn btn-success" style={{marginRight: 5 + 'em'}} onClick={() => this.EditInfoClicked(this.state.name)}><img src="https://photo620x400.mnstatic.com/c4c05ab1a0cf201dabb21e4c75261a2b/barcolana-regatta.jpg" alt='' width="30px" height="30px" /> </button>
+                  <div className="d-flex justify-content-between">
+                <button className="btn btn-success" onClick={() => this.EditInfoClicked(this.state.name)}><img src="https://photo620x400.mnstatic.com/c4c05ab1a0cf201dabb21e4c75261a2b/barcolana-regatta.jpg" alt='' width="30px" height="30px" /> </button>
                  
-                <button className="btn btn-secondary" style={{marginRight: 5 + 'em'}} onClick={() => this.EditUserClicked(this.state.name)}>   Edit Profile   </button>
+                <button className="btn btn-secondary" onClick={() => this.EditUserClicked(this.state.name)}>   Edit Profile   </button>
                 
-                <button className="btn btn-primary" style={{marginRight: 25 + 'em'}} onClick={() => this.CreateUserClicked()}>Create Travel Plan</button>
-                <button className="btn btn-warning" style={{marginRight: 5 + 'em'}} onClick={() => this.LogOutUserClicked()}>Log Out</button>
+                <button className="btn btn-primary" onClick={() => this.CreateUserClicked()}>Create Travel Plan</button>
+                <button className="btn btn-info" onClick={() => this.CreateUserClicked()}>Your Plans</button>
+                <button className="btn btn-warning" onClick={() => this.LogOutUserClicked()}>Log Out</button>
+                </div>
                 <h1>welcome {this.state.name}</h1>
                 
                     <table className="table">
@@ -92,7 +94,7 @@ class HomeMain extends Component {
                  
                 </div>
             </div>
-            <MDBFooter color="blue" className="footer font-small">
+            {/* <MDBFooter color="blue" className="footer font-small">
             <MDBContainer fluid className="text-center text-md-left">
             <MDBRow>
             <MDBCol md="6">
@@ -126,7 +128,7 @@ class HomeMain extends Component {
           &copy; {new Date().getFullYear()} Copyright:  Unicorn Program Batch 6 
         </MDBContainer>
       </div>
-    </MDBFooter>
+    </MDBFooter> */}
             </section>
         )
     }

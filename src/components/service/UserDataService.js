@@ -30,10 +30,9 @@ class UserDataService {
     //     return axios.get(`${INSTRUCTOR_API_URL}/courses/${id}`);
     // }
 
-    // deleteCourse(name, id) {
-    //     //console.log('executed service')
-    //     return axios.delete(`${INSTRUCTOR_API_URL}/courses/${id}`);
-    // }
+    deleteUser(id){
+        return axios.delete(`${COURSE_API_URL}/user/delete/${id}`)
+    }
 
     // updateCourse(name, id, course) {
     //     //console.log('executed service')
