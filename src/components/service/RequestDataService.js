@@ -12,6 +12,12 @@ class RequestDataService {
     deleteRequest(id){
         return axios.delete(`${COURSE_API_URL}/request/delete/${id}`)
     }
+    deleteRequestByName(name){
+        return axios.delete(`${COURSE_API_URL}/request/del/sender/${name}`)
+    }
+    deleteRequestByReceiver(name){
+        return axios.delete(`${COURSE_API_URL}/request/del/receiver/${name}`)
+    }
 }
 
 export default new RequestDataService()

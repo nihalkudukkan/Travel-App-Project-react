@@ -4,7 +4,7 @@ import UserInfoChange from './UserInfoChange';
 import Home from './Home';
 import HomeMain from './HomeMain';
 import UserComponent from './UserComponent';
-import UserInfo from './UserInfo';
+// import UserInfo from './UserInfo';
 import Welcome from './Welcome';
 import UserDetails from './UserDetails';
 import Notification from './Notification';
@@ -12,6 +12,7 @@ import MyTravelPlan from './MyTravelPlan';
 import CreatePlan from './CreatePlan';
 import SearchUser from './SearchUser';
 import EditTravelPlan from './EditTravelPlan';
+import FriendList from './FriendList';
 
 class RegApp extends Component {
     render() { 
@@ -31,6 +32,7 @@ class RegApp extends Component {
                         <Route path="/createTravelPlan/:name" component={CreatePlan}/>
                         <Route path="/editTravelPlan/:id" component={EditTravelPlan}/>
                         <Route path="/searchuser/:name" component={SearchUser}/>
+                        <Route path="/friend/:name" component={FriendList}/>
                     </Switch>
                 </>
             </Router>

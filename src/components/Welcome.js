@@ -40,6 +40,8 @@ class Welcome extends Component {
                     if(this.state.Categoriesh.password===values.password){
                         // console.log("happy");
                         this.props.history.push(`/homemain/${this.state.Categoriesh.username}`);
+                    } else {
+                        alert("The username or password you entered isn't connected to an account");
                     }
                 }
                 }

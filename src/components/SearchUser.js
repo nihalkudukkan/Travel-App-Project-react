@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import UserDataService from './service/UserDataService';
 import RequestDataService from './service/RequestDataService';
+import PlanDataService from './service/PlanDataService';
 
 class SearchUser extends Component {
     constructor(props) {
@@ -10,15 +11,20 @@ class SearchUser extends Component {
         this.state = {
             // id: this.props.match.params.id,
             username:'',
+            placeOfStay:'',
             tempName:'',
             password:'',
             Categoriesh: [],
+            Plans:[],
             name: this.props.match.params.name,
             temp:0,
-            connTemp:0
+            connTemp:0,
+            temp1:0,
+            connTemp1:0
         }
 
          this.onSubmit = this.onSubmit.bind(this)
+         this.onSubmitPlan = this.onSubmitPlan.bind(this)
          this.refreshforverify = this.refreshforverify.bind(this)
         // this.validate = this.validate.bind(this)
 
@@ -37,10 +43,35 @@ class SearchUser extends Component {
                     this.setState({
                          Categoriesh: response.data,
                          temp:1,
+                         temp1:0,
                          connTemp:0
                         });
+                        console.log(this.state.Categoriesh);
                     // this.props.history.push(`/user/${this.state.Categoriesh.username}`);
-                    var countKey = Object.keys(response.data).length;
+                    // var countKey = Object.keys(response.data).length;
+                    // console.log(countKey);
+                }
+                }
+            )
+    }
+    refereshforPlan(username) {
+        // console.log(username);
+        PlanDataService.getByPlan(username)//HARDCODED
+            .then(
+                response => {
+                    if(response.data===null){
+                        alert("No user exist with this username");
+                    }
+                    else{   
+                    this.setState({
+                        Plans: response.data,
+                        temp:0,
+                        temp1:1,
+                        connTemp1:0
+                        });
+                        console.log(this.state.Plans);
+                    // this.props.history.push(`/user/${this.state.Categoriesh.username}`);
+                    // var countKey = Object.keys(response.data).length;
                     // console.log(countKey);
                 }
                 }
@@ -55,14 +86,14 @@ class SearchUser extends Component {
         })
         
     }
+    onSubmitPlan(values){
+        this.refereshforPlan(values.placeOfStay);
+    }
     registerUserClicked(){
         this.props.history.push(`/users`)
     }
     loginUserClicked(){
         this.props.history.push(`/home`)
-    }
-    
-    componentDidMount() {
     }
 
     handleConnect(){
@@ -79,15 +110,15 @@ class SearchUser extends Component {
     }
 
     render() { 
-        let { username, password } = this.state
+        let { username, placeOfStay } = this.state
         return (
             <div className="container">
             <button className="btn btn-warning" onClick={()=>{this.props.history.push(`/homemain/${this.state.name}`)}}>Go Back</button>
             <div className="border py-5 my-2">
-                <h3 className="d-flex justify-content-center">Search for Users</h3>
+                <h3 className="d-flex justify-content-center">Search for Users or Plans</h3>
                 <div className="container">
                     <Formik
-                        initialValues={{ username, password }}
+                        initialValues={{ username, placeOfStay }}
                         onSubmit={this.onSubmit}
                         validateOnChange={false}
                         validateOnBlur={false}
@@ -117,8 +148,40 @@ class SearchUser extends Component {
 
                     
                 </div>
+                <div className="container">
+                    <Formik
+                        initialValues={{ username, placeOfStay }}
+                        onSubmit={this.onSubmitPlan}
+                        validateOnChange={false}
+                        validateOnBlur={false}
+                        validate={this.validate}
+                        enableReinitialize={true}
+                    >
+                        {
+                            (props) => (
+                                <Form>
+                                    <ErrorMessage name="description" component="div"
+                                        className="alert alert-warning" />
+                                    <fieldset className="form-group">
+                                        <p>Plans</p>
+                                        <Field className="form-control" type="text" name="placeOfStay" required/>
+                                    </fieldset>
+                                    {/* edits */}
+
+                                    
+                                    {/* edits */}
+                                    <button className="btn btn-success mb-4" type="submit" >Search</button>
+                                    
+                                    
+                                </Form>
+                            )
+                        }
+                    </Formik>
+
+                    
+                </div>
             </div>
-            {this.state.temp===1 ? <table className="table">
+            {this.state.temp===1 ? <table className="table mb-5">
                         <thead>
                             <tr>
                                 
@@ -135,7 +198,41 @@ class SearchUser extends Component {
                                 </td>
                             </tr>
                         </tbody>
-                    </table>:<p>Search for users</p>}
+                    </table>:<p></p>}
+            {this.state.temp1===1 ? <table className="table mb-5">
+                        <thead>
+                            <tr>
+                                
+                            <th>Username</th>
+                                <th>Place of stay</th>
+                                <th>Mode of travel</th>
+                                <th>Mode of stay</th>
+                                <th>Number of days</th>
+                                <th>Start date</th>
+                                <th>Activities</th>
+                                <th>No of participants</th>
+                                <th>Cost</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>{
+                                this.state.Plans.map(
+                                    user =>
+                                        <tr key={user.id}>
+                                            <td>{user.username}</td>
+                                            <td>{user.placeOfStay}</td>
+                                            <td>{user.modeOfTravel}</td>
+                                            <td>{user.modeOfStay}</td>
+                                            <td>{user.days}</td>
+                                            <td>{user.startDt}</td>
+                                            <td>{user.activities}</td>
+                                            <td>{user.participants}</td>
+                                            <td>{user.cost}</td>
+                                        </tr>
+                                )
+                            }
+                        </tbody>
+                    </table>:<p></p>}
             
             </div>
         );

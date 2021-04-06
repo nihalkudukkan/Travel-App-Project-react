@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import PlanDataService from './service/PlanDataService';
-// import UserDataService from './service/UserDataService';
 import './HomeMain.css'
-import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
 import RequestDataService from './service/RequestDataService';
-//import logo from './logo.jpeg'; // with import
+
 
 class HomeMain extends Component {
     constructor(props) {
@@ -82,6 +80,7 @@ class HomeMain extends Component {
                 <button className="btn btn-secondary" onClick={() => this.EditUserClicked(this.state.name)}>   Edit Profile   </button>
                 
                 
+                <button className="btn btn-warning" onClick={() => this.props.history.push(`/friend/${this.state.name}`)}>Freinds</button>
                 <button className="btn btn-warning" onClick={() => this.LogOutUserClicked()}>Log Out</button>
                 </div>
                 <div className="d-flex justify-content-around mb-5"><button className="btn btn-primary" onClick={() => this.CreatePlanClicked(this.state.name)}>Create Travel Plan</button>
@@ -130,41 +129,7 @@ class HomeMain extends Component {
                  
                 </div>
             </div>
-            {/* <MDBFooter color="blue" className="footer font-small">
-            <MDBContainer fluid className="text-center text-md-left">
-            <MDBRow>
-            <MDBCol md="6">
-            <h5 className="title">Footer Content</h5>
-            <p>
-              Here you can use rows and columns here to organize your footer
-              content.
-            </p>
-          </MDBCol>
-          <MDBCol md="6">
-            <h5 className="title">Links</h5>
-            <ul>
-              <li className="list-unstyled">
-                <a href="#!">Link 1</a>
-              </li>
-              <li className="list-unstyled">
-                <a href="#!">Link 2</a>
-              </li>
-              <li className="list-unstyled">
-                <a href="#!">Link 3</a>
-              </li>
-              <li className="list-unstyled">
-                <a href="#!">Link 4</a>
-              </li>
-            </ul>
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
-      <div className="footer-copyright text-center py-3">
-        <MDBContainer fluid>
-          &copy; {new Date().getFullYear()} Copyright:  Unicorn Program Batch 6 
-        </MDBContainer>
-      </div>
-    </MDBFooter> */}
+            
             </section>
         )
     }

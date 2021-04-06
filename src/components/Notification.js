@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import FriendDataService from './service/FriendDataService';
 import RequestDataService from './service/RequestDataService';
 
 class Notification extends Component {
@@ -28,6 +29,17 @@ class Notification extends Component {
             )
     }
 
+    handleAccept(i){
+        let Friend = {
+            name: this.state.name,
+            connect: i.sender
+        }
+        FriendDataService.postFriend(Friend);
+        RequestDataService.deleteRequest(i.id);
+        alert("Friend Added");
+        window.location.reload(false);
+    }
+
     handleRemove(id){
         RequestDataService.deleteRequest(id);
         alert("Request deleted");
@@ -53,7 +65,7 @@ class Notification extends Component {
                                     (i) =>
                                         <tr key={i.id}>
                                             <td>{i.sender}</td>
-                                            <td><button className="btn btn-success">Accept</button></td>
+                                            <td><button className="btn btn-success" onClick={()=> this.handleAccept(i)}>Accept</button></td>
                                             <td><button className="btn btn-warning" onClick={()=> this.handleRemove(i.id)}>Reject</button></td>
                                         </tr>
                                 )

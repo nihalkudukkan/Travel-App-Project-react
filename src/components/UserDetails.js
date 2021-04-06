@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import FriendDataService from './service/FriendDataService';
 import PlanDataService from './service/PlanDataService';
+import RequestDataService from './service/RequestDataService';
 import UserDataService from './service/UserDataService';
 
 
@@ -38,6 +40,10 @@ class UserDetails extends Component {
         alert("Profile and Plans deleted");
         UserDataService.deleteUser(this.state.id);
         PlanDataService.deleteUserPlan(this.state.name);
+        RequestDataService.deleteRequestByName(this.state.name)
+        RequestDataService.deleteRequestByReceiver(this.state.name)
+        FriendDataService.deleteFriendByConnect(this.state.name)
+        FriendDataService.deleteFriendByName(this.state.name)
         this.props.history.push(`/`);
     }
 
@@ -48,7 +54,6 @@ class UserDetails extends Component {
     }
 
     render() {
-        console.log('render')
         return (
             <div className="container">
                 <button className="btn btn-warning" onClick={()=>{this.props.history.push(`/homemain/${this.state.name}`)}}>Go Back</button>

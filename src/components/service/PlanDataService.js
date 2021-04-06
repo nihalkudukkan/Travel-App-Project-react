@@ -12,6 +12,9 @@ class PlanDataService {
     retrieveUserPlan(name) {
         return axios.get(`${PLAN_API_URL}/plans/${name}`)
     }
+    getByPlan(plan){
+        return axios.get(`${PLAN_API_URL}/plans/place/${plan}`)
+    }
     postPlan(Plan) {
         return axios.post(`${PLAN_API_URL}/plan`, Plan)
     }
