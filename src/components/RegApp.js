@@ -5,6 +5,7 @@ import Home from './Home';
 import HomeMain from './HomeMain';
 import UserComponent from './UserComponent';
 // import UserInfo from './UserInfo';
+
 import Welcome from './Welcome';
 import UserDetails from './UserDetails';
 import Notification from './Notification';
@@ -19,7 +20,7 @@ class RegApp extends Component {
         return (
             <Router>
                 <>
-                    <h1 className="display-1 d-flex justify-content-center my-3">Travel Application</h1>
+                    {/* <h1 className="display-1 d-flex justify-content-center my-3">Travel Application</h1> */}
                     <Switch>
                         <Route path="/" exact component={Welcome}/>
                         <Route path="/home/:name" exact component={Home}/>

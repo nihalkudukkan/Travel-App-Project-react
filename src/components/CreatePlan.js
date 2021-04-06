@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import PlanDataService from './service/PlanDataService';
+import { Button,Badge, Navbar, Nav, NavDropdown,Form,Dropdown, FormControl } from 'react-bootstrap';
+import Badges from '@material-ui/core/Badge';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
 
 class CreatePlan extends Component {
     constructor(props) {
@@ -13,7 +17,8 @@ class CreatePlan extends Component {
             startDt:'',
             activities:'',
             participants:'',
-            cost:''
+            cost:'',
+            tempnot:0
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -46,8 +51,68 @@ class CreatePlan extends Component {
           })
       }
 
+// 
+LogOutUserClicked(){
+    this.props.history.push(`/`)
+}
+EditUserClicked(name){
+  this.props.history.push(`/userinfo/${name}`);
+}
+CreatePlanClicked(name){
+    this.props.history.push(`/createTravelPlan/${name}`)
+}
+EditInfoClicked(name){
+    this.props.history.push(`/user/${name}`);
+}
+notification(name){
+  // console.log(name);
+  this.props.history.push(`/notification/${name}`)
+}
+yourPlan(name){
+  this.props.history.push(`/mytravelplan/${name}`)
+}
+
+searchUser(name){
+  this.props.history.push(`/searchuser/${name}`)
+}
+// 
     render() { 
+        let { tempnot } = this.state
         return (
+            <>
+            <Navbar bg="dark" variant="dark" expand="lg">
+                <Navbar.Brand href="#home">Travel Application</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="mr-auto">
+                    <Nav.Link onClick={()=>{this.props.history.push(`/homemain/${this.state.name}`)}}>Home</Nav.Link>
+                    <Nav.Link onClick={() => this.CreatePlanClicked(this.state.name)}>Create Travel Plan</Nav.Link>
+                    <Nav.Link onClick={() => this.yourPlan(this.state.name)}>Your Plans</Nav.Link>
+                    <Nav.Link onClick={() => this.props.history.push(`/friend/${this.state.name}`)}>Friends</Nav.Link>
+                    <Nav.Link onClick={()=>this.searchUser(this.state.name)}>Search</Nav.Link>
+                </Nav>
+                <Nav className="margin">
+                    <Dropdown>
+                    <Dropdown.Toggle bg="dark" variant="dark" id="dropdown-basic">
+                    {this.state.tempnot!==0?
+                    <Badges badgeContent={`${tempnot}`} color="primary">
+                    <AccountCircleIcon />
+                    </Badges>
+                    :<AccountCircleIcon />}
+                    
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                        <Dropdown.Item onClick={() => this.EditInfoClicked(this.state.name)}>View Profile</Dropdown.Item>
+                        <Dropdown.Item onClick={() => this.EditUserClicked(this.state.name)}>Edit Profile</Dropdown.Item>
+                        <Dropdown.Item onClick={()=>this.notification(this.state.name)}>Notification <Badge variant="primary">({this.state.temp})</Badge>{' '}</Dropdown.Item>
+                        <Dropdown.Divider />
+                        <Dropdown.Item onClick={() => this.LogOutUserClicked()} >Log Out</Dropdown.Item>
+                        </Dropdown.Menu>
+                        </Dropdown>
+                </Nav>
+                </Navbar.Collapse>
+            </Navbar>
             <div className="container">
                 <button className="btn btn-warning mb-3" onClick={()=>{this.props.history.push(`/homemain/${this.state.name}`)}}>Go Back</button>
                 <h1>Create Travel Plan {this.state.name}</h1>
@@ -111,6 +176,7 @@ class CreatePlan extends Component {
                     <input class="btn btn-primary mb-5" type="submit" value="Submit" />
                 </form>
             </div>
+            </>
         );
     }
 }
