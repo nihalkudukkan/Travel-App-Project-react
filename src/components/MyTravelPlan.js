@@ -29,6 +29,11 @@ class MyTravelPlan extends Component {
         // console.log("Removed");
         PlanDataService.deletePlanId(id);
         alert("Plan Deleted");
+        window.location.reload(false);
+    }
+
+    editPlan(id){
+        this.props.history.push(`/editTravelPlan/${id}`);
     }
 
     render() { 
@@ -40,6 +45,7 @@ class MyTravelPlan extends Component {
                     <thead>
                             <tr>                                
                                 {/* <th>Username</th> */}
+                                <th>id</th>
                                 <th>Place of stay</th>
                                 <th>Mode of travel</th>
                                 <th>Mode of stay</th>
@@ -56,6 +62,7 @@ class MyTravelPlan extends Component {
                                     i =>
                                         <tr key={i.id}>
                                             {/* <td>{i.username}</td> */}
+                                            <td>{i.id}</td>
                                             <td>{i.placeOfStay}</td>
                                             <td>{i.modeOfTravel}</td>
                                             <td>{i.modeOfStay}</td>
@@ -64,7 +71,7 @@ class MyTravelPlan extends Component {
                                             <td>{i.activities}</td>
                                             <td>{i.participants}</td>
                                             <td>{i.cost}</td>
-                                            <td><button className="btn btn-success">Update</button></td>
+                                            <td><button className="btn btn-success" onClick={() => this.editPlan(i.id)}>Update</button></td>
                                             <td><button className="btn btn-warning" onClick={() => this.removePlan(i.id)} >Remove</button></td>
                                         </tr>
                                 )

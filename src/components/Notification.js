@@ -22,10 +22,16 @@ class Notification extends Component {
                     this.setState({
                         req: response.data
                     })
-                    console.log(this.state.name)
-                    console.log(response.data)
+                    // console.log(this.state.req);
+                    console.log(this.state.req.length);
                 }
             )
+    }
+
+    handleRemove(id){
+        RequestDataService.deleteRequest(id);
+        alert("Request deleted");
+        window.location.reload(false);
     }
 
     render() {
@@ -44,11 +50,11 @@ class Notification extends Component {
                     <tbody>
                             {
                                 this.state.req.map(
-                                    i =>
+                                    (i) =>
                                         <tr key={i.id}>
                                             <td>{i.sender}</td>
                                             <td><button className="btn btn-success">Accept</button></td>
-                                            <td><button className="btn btn-warning">Remove</button></td>
+                                            <td><button className="btn btn-warning" onClick={()=> this.handleRemove(i.id)}>Reject</button></td>
                                         </tr>
                                 )
                             }

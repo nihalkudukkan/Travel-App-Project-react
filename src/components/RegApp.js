@@ -10,6 +10,8 @@ import UserDetails from './UserDetails';
 import Notification from './Notification';
 import MyTravelPlan from './MyTravelPlan';
 import CreatePlan from './CreatePlan';
+import SearchUser from './SearchUser';
+import EditTravelPlan from './EditTravelPlan';
 
 class RegApp extends Component {
     render() { 
@@ -27,6 +29,8 @@ class RegApp extends Component {
                         <Route path="/notification/:name" component={Notification}/>
                         <Route path="/mytravelplan/:name" component={MyTravelPlan}/>
                         <Route path="/createTravelPlan/:name" component={CreatePlan}/>
+                        <Route path="/editTravelPlan/:id" component={EditTravelPlan}/>
+                        <Route path="/searchuser/:name" component={SearchUser}/>
                     </Switch>
                 </>
             </Router>

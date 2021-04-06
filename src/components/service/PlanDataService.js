@@ -6,11 +6,17 @@ class PlanDataService {
     retrieveAllPlan(){
         return axios.get(`${PLAN_API_URL}/sortPlan`);
     }
+    retrieveById(id){
+        return axios.get(`${PLAN_API_URL}/plan/id/${id}`)
+    }
     retrieveUserPlan(name) {
         return axios.get(`${PLAN_API_URL}/plans/${name}`)
     }
     postPlan(Plan) {
         return axios.post(`${PLAN_API_URL}/plan`, Plan)
+    }
+    updatePlan(Plan) {
+        return axios.put(`${PLAN_API_URL}/plan`, Plan)
     }
     deleteUserPlan(name){
         return axios.delete(`${PLAN_API_URL}/plan/del/${name}`)

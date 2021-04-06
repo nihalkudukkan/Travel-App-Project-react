@@ -3,6 +3,7 @@ import PlanDataService from './service/PlanDataService';
 // import UserDataService from './service/UserDataService';
 import './HomeMain.css'
 import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
+import RequestDataService from './service/RequestDataService';
 //import logo from './logo.jpeg'; // with import
 
 class HomeMain extends Component {
@@ -11,12 +12,15 @@ class HomeMain extends Component {
         this.state = {
             Plans: [],
             name: this.props.match.params.name,
+            temp:0
         }
         this.refreshCourses = this.refreshCourses.bind(this)
+        this.refreshNotification = this.refreshNotification.bind(this)
     }
 
     componentDidMount() {
         this.refreshCourses();
+        this.refreshNotification();
     }
 
     refreshCourses() {
@@ -27,6 +31,21 @@ class HomeMain extends Component {
                 }
             )
     }
+    refreshNotification() {
+      RequestDataService.getUserFriendReq(this.state.name)
+          .then(
+              response => {
+                  this.setState({
+                      req: response.data
+                  })
+                  // console.log(this.state.req);
+                  // console.log(this.state.req.length);
+                  this.setState({
+                    temp:this.state.req.length
+                  })
+              }
+          )
+  }
     LogOutUserClicked(){
         this.props.history.push(`/`)
     }
@@ -47,6 +66,10 @@ class HomeMain extends Component {
       this.props.history.push(`/mytravelplan/${name}`)
     }
     
+    searchUser(name){
+      this.props.history.push(`/searchuser/${name}`)
+    }
+
     render() {
         return (
             <section className="home__main">
@@ -63,7 +86,8 @@ class HomeMain extends Component {
                 </div>
                 <div className="d-flex justify-content-around mb-5"><button className="btn btn-primary" onClick={() => this.CreatePlanClicked(this.state.name)}>Create Travel Plan</button>
                 <button className="btn btn-info" onClick={() => this.yourPlan(this.state.name)}>Your Plans</button>
-                <button onClick={()=>this.notification(this.state.name)} className="btn alert-primary" >Notification</button>
+                <button onClick={()=>this.notification(this.state.name)} className="btn alert-primary" >Notification ({this.state.temp})</button>
+                <button onClick={()=>this.searchUser(this.state.name)} className="btn alert-primary" >Search</button>
                 </div>
                 <h1>Welcome {this.state.name}</h1>
                 
