@@ -90,7 +90,7 @@ searchUser(name){
                     <Nav.Link onClick={() => this.props.history.push(`/friend/${this.state.name}`)}>Friends</Nav.Link>
                     <Nav.Link onClick={()=>this.searchUser(this.state.name)}>Search</Nav.Link>
                 </Nav>
-                <Nav className="margin">
+                <Nav className="margin" style={{marginRight:  '5em'}}>
                     <Dropdown>
                     <Dropdown.Toggle bg="dark" variant="dark" id="dropdown-basic">
                     {this.state.tempnot!==0?
@@ -113,7 +113,7 @@ searchUser(name){
                 </Navbar.Collapse>
             </Navbar>
             <div className="container">
-                <button className="btn btn-warning" onClick={()=>{this.props.history.push(`/homemain/${this.state.name}`)}}>Go Back</button>
+                {/* <button className="btn btn-warning" onClick={()=>{this.props.history.push(`/homemain/${this.state.name}`)}}>Go Back</button> */}
                 <h1>Notification for {this.state.name}</h1>
                 <table className="table">
                     <thead>

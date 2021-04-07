@@ -86,7 +86,7 @@ class HomeMain extends Component {
                     <Nav.Link onClick={() => this.props.history.push(`/friend/${this.state.name}`)}>Friends</Nav.Link>
                     <Nav.Link onClick={()=>this.searchUser(this.state.name)}>Search</Nav.Link>
                 </Nav>
-                <Nav className="margin">
+                <Nav className="margin" style={{marginRight:  '5em'}}>
                     <Dropdown>
                     <Dropdown.Toggle bg="dark" variant="dark" id="dropdown-basic">
                     {this.state.temp!==0?
@@ -108,10 +108,10 @@ class HomeMain extends Component {
                 </Nav>
                 </Navbar.Collapse>
             </Navbar>
-            <div className="container mt-3">
+            <div className="container">
                 
                 <div className="container">
-                  <div className="d-flex justify-content-between mb-4">
+                  {/* <div className="d-flex justify-content-between mb-4"> */}
                 {/* <button className="btn btn-success" onClick={() => this.EditInfoClicked(this.state.name)}><img src="https://photo620x400.mnstatic.com/c4c05ab1a0cf201dabb21e4c75261a2b/barcolana-regatta.jpg" alt='' width="30px" height="30px" /> </button>
                  
                 <button className="btn btn-secondary" onClick={() => this.EditUserClicked(this.state.name)}>   Edit Profile   </button>
@@ -124,10 +124,10 @@ class HomeMain extends Component {
                 <button className="btn btn-info" onClick={() => this.yourPlan(this.state.name)}>Your Plans</button>
                 <button onClick={()=>this.notification(this.state.name)} className="btn alert-primary" >Notification ({this.state.temp})</button>
                 <button onClick={()=>this.searchUser(this.state.name)} className="btn alert-primary" >Search</button> */}
-                </div>
-                <h1>Welcome {this.state.name}</h1>
+                {/* </div> */}
+                {/* <h1>Welcome {this.state.name}</h1> */}
                 
-                    <table className="table">
+                    {/* <table className="table">
                         <thead>
                             <tr>
                                 
@@ -162,10 +162,17 @@ class HomeMain extends Component {
                                 )
                             }
                         </tbody>
-                    </table>
+                    </table> */}
                     <section class="home-blog bg-sand">
     <div class="container">
-		
+		<div class="row justify-content-md-center">
+			<div class="col-xl-5 col-lg-6 col-md-8">
+				<div class="section-title text-center title-ex1">
+					<h2>Welcome {this.state.name}</h2>
+					<p>let your journey begin</p>
+				</div>
+			</div>
+		</div>
 		{/*  section title ends  */}
 		<div class="row ">
 			{this.state.Plans.map(

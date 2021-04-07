@@ -97,7 +97,7 @@ class UserDetails extends Component {
                     <Nav.Link onClick={() => this.props.history.push(`/friend/${this.state.name}`)}>Friends</Nav.Link>
                     <Nav.Link onClick={()=>this.searchUser(this.state.name)}>Search</Nav.Link>
                 </Nav>
-                <Nav className="margin">
+                <Nav className="margin" style={{marginRight:  '5em'}}>
                     <Dropdown>
                     <Dropdown.Toggle bg="dark" variant="dark" id="dropdown-basic">
                     {this.state.tempnot!==0?
@@ -119,8 +119,8 @@ class UserDetails extends Component {
                 </Nav>
                 </Navbar.Collapse>
             </Navbar>
-            <div className="container">
-                <button className="btn btn-warning" onClick={()=>{this.props.history.push(`/homemain/${this.state.name}`)}}>Go Back</button>
+            <div className="container mt-3">
+                {/* <button className="btn btn-warning" onClick={()=>{this.props.history.push(`/homemain/${this.state.name}`)}}>Go Back</button> */}
                 <h3>User Details</h3>
                 {this.state.message && <div class="alert alert-success">{this.state.message}</div>}
                 <div className="container">

@@ -113,8 +113,8 @@ searchUser(name){
                 </Nav>
                 </Navbar.Collapse>
             </Navbar>
-            <div className="container">
-                <button className="btn btn-warning mb-3" onClick={()=>{this.props.history.push(`/homemain/${this.state.name}`)}}>Go Back</button>
+            <div className="container mt-3">
+                {/* <button className="btn btn-warning mb-3" onClick={()=>{this.props.history.push(`/homemain/${this.state.name}`)}}>Go Back</button> */}
                 <h1>Create Travel Plan {this.state.name}</h1>
                 <form onSubmit={this.handleSubmit}>
                     <div class="form-group row">

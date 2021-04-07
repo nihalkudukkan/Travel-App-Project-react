@@ -134,7 +134,7 @@ class MyTravelPlan extends Component {
                     <Nav.Link onClick={() => this.props.history.push(`/friend/${this.state.name}`)}>Friends</Nav.Link>
                     <Nav.Link onClick={()=>this.searchUser(this.state.name)}>Search</Nav.Link>
                 </Nav>
-                <Nav className="margin">
+                <Nav className="margin" style={{marginRight:  '5em'}}>
                     <Dropdown>
                     <Dropdown.Toggle bg="dark" variant="dark" id="dropdown-basic">
                     {this.state.tempnot!==0?
@@ -156,15 +156,15 @@ class MyTravelPlan extends Component {
                 </Nav>
                 </Navbar.Collapse>
             </Navbar>
-            <div className="container">
-                <button className="btn btn-warning" onClick={()=>{this.props.history.push(`/homemain/${this.state.name}`)}}>Go Back</button>
-                <h1>Travel Plans of {this.state.name} and friends</h1>
-                <table className="table">
+            <div className="container mt-3">
+                {/* <button className="btn btn-warning" onClick={()=>{this.props.history.push(`/homemain/${this.state.name}`)}}>Go Back</button> */}
+                <h1>Travel Plans of {this.state.name}</h1>
+                {/* <table className="table">
                     <thead>
                             <tr>                                
                                 {/* <th>Username</th> */}
-                                <th>Name</th>
-                                <th>Place of stay</th>
+                                {/* <th>Name</th> */}
+                                {/* <th>Place of stay</th>
                                 <th>Mode of travel</th>
                                 <th>Mode of stay</th>
                                 <th>Number of days</th>
@@ -172,10 +172,10 @@ class MyTravelPlan extends Component {
                                 <th>Activities</th>
                                 <th>No of participants</th>
                                 <th>Cost</th>
-                            </tr>
-                    </thead>
-                    <tbody>
-                            {
+                            </tr> */}
+                    {/* </thead>
+                    <tbody> */}
+                            {/* {
                                 this.state.MyPlan.map(
                                     i =>
                                         <tr key={i.id}>
@@ -194,7 +194,7 @@ class MyTravelPlan extends Component {
                                 )
                             }
                             
-                    </tbody>
+                    </tbody> */}
                     
                     {/* <tbody>
                             {
@@ -215,9 +215,36 @@ class MyTravelPlan extends Component {
                             }
                             
                     </tbody> */}
-                </table>
-                {/* <button onClick={()=>this.myFunction()}>Try it</button>
-                <p id="demo"></p> */}
+                {/* </table> */}
+                {this.state.MyPlan.map(
+                user =>
+                <div class="col-md-6">
+				<div class="media blog-media">
+				  <a href="blog-post-left-sidebar.html"><img class="d-flex" src="https://i.picsum.photos/id/406/250/380.jpg?grayscale&hmac=g0rpcuDfLepEMU008-qnAF87LKYMjwUEJk9xGlEwkPE" alt="Generic placeholder image" /></a>
+				  <div class="circle">
+				  	{/* <h5 class="day">14 sep</h5>
+				  	<span class="month">sep</span> */}
+                      <h5 class="day">{user.startDt}</h5>
+				  </div>
+				  <div class="media-body">
+				    <a href=""><h5 class="mt-0">{user.username}</h5></a>
+                    <p>Location: <h5>{user.placeOfStay}</h5></p>
+				    A Journey of {user.participants} people about {user.days} days which include activities such as {user.activities}. Travel By {user.modeOfTravel} and spend night at {user.modeOfStay}!
+				    {/* <a href="blog-post-left-sidebar.html" class="post-link">Read More</a> */}
+				    <ul  className="mt-2">
+				    	<li>Cost: {user.cost}</li>
+                        <div className="mt-3">
+                        <button className="btn btn-success mr-3" onClick={() => this.editPlan(user.id)}>Update</button>
+                        <button className="btn btn-warning" onClick={() => this.removePlan(user.id)} >Remove</button>
+                        </div>
+				    	{/* <li class="text-right"><a href="blog-post-left-sidebar.html">07 comments</a></li> */}
+				    </ul>
+				  </div>
+				</div>
+			</div>
+            )    
+        }
+
             </div>
             </>
         );
