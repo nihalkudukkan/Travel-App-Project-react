@@ -3,6 +3,7 @@ import FriendDataService from './service/FriendDataService';
 import { Button,Badge, Navbar, Nav, NavDropdown,Form,Dropdown, FormControl } from 'react-bootstrap';
 import Badges from '@material-ui/core/Badge';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import PlanDataService from './service/PlanDataService';
 
 class FriendList extends Component {
     constructor(props){
@@ -11,6 +12,9 @@ class FriendList extends Component {
             name: this.props.match.params.name,
             friends:[],
             connect:[],
+            planName:'',
+            loadPlans:[],
+            planNametemp:0,
             tempnot:0
         }
         this.fetchUserFriends = this.fetchUserFriends.bind(this)
@@ -38,6 +42,18 @@ class FriendList extends Component {
                 this.setState({ friends: response.data })
             }            
         )
+    }
+
+    showPlansClick(name){
+        this.setState({planName: name, planNametemp:1})
+        PlanDataService.retrieveUserPlan(name)
+            .then(
+                response=> {
+                    this.setState({
+                        loadPlans:response.data
+                    })
+                }
+            )
     }
 
     //
@@ -117,6 +133,7 @@ class FriendList extends Component {
                             user =>
                             <tr key={user.id}>
                                 <td>{user.connect}</td>
+                                <button className="btn btn-primary" onClick={()=>this.showPlansClick(user.connect)}>Show Plans</button>
                             </tr>
                         )
                     }
@@ -125,12 +142,22 @@ class FriendList extends Component {
                             i =>
                             <tr key={i.id}>
                                 <td>{i.name}</td>
+                                <button className="btn btn-primary" onClick={()=>this.showPlansClick(i.name)}>Show Plans</button>
                             </tr>
                         )
                     }
                 </tbody>
                 </table>                
             </div>
+                    {this.state.loadPlans.map(
+                        i=><div className="container"> 
+                            <p>{i.placeOfStay}</p>
+                            <p>{i.startDt}</p>
+                            <p>Participants: {i.participants}</p>
+                            <p>Cost: {i.cost}</p>
+                            <button className="btn btn-primary">Connect</button>
+                        </div>
+                    )}
             </>
         );
     }

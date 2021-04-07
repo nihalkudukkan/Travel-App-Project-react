@@ -80,7 +80,7 @@ class HomeMain extends Component {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link href="#home">Home</Nav.Link>
+                    <Nav.Link onClick={()=>{this.props.history.push(`/homemain/${this.state.name}`)}}>Home</Nav.Link>
                     <Nav.Link onClick={() => this.CreatePlanClicked(this.state.name)}>Create Travel Plan</Nav.Link>
                     <Nav.Link onClick={() => this.yourPlan(this.state.name)}>Your Plans</Nav.Link>
                     <Nav.Link onClick={() => this.props.history.push(`/friend/${this.state.name}`)}>Friends</Nav.Link>
@@ -179,7 +179,7 @@ class HomeMain extends Component {
                 user =>
                 <div class="col-md-6">
 				<div class="media blog-media">
-				  <a href="blog-post-left-sidebar.html"><img class="d-flex" src="https://i.picsum.photos/id/406/250/380.jpg?grayscale&hmac=g0rpcuDfLepEMU008-qnAF87LKYMjwUEJk9xGlEwkPE" alt="Generic placeholder image" /></a>
+				  <a><img class="d-flex" src="https://i.picsum.photos/id/689/230/350.jpg?hmac=B6RO7RQfg07sfIAnbJEQAHCMQmmV470eSswvF9Fap2Y" alt="Generic placeholder image" /></a>
 				  <div class="circle">
 				  	{/* <h5 class="day">14 sep</h5>
 				  	<span class="month">sep</span> */}

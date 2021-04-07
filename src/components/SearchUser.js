@@ -83,12 +83,14 @@ class SearchUser extends Component {
     }
     onSubmit(values){
         
-        
+        if(values.username===this.state.name){
+            alert("You cannot search for your own name")
+        } else{
         this.refreshforverify(values.username);
         this.setState({
             tempName:values.username
         })
-        
+    }
     }
     onSubmitPlan(values){
         this.refereshforPlan(values.placeOfStay);
@@ -166,7 +168,7 @@ class SearchUser extends Component {
                     <Dropdown.Menu>
                         <Dropdown.Item onClick={() => this.EditInfoClicked(this.state.name)}>View Profile</Dropdown.Item>
                         <Dropdown.Item onClick={() => this.EditUserClicked(this.state.name)}>Edit Profile</Dropdown.Item>
-                        <Dropdown.Item onClick={()=>this.notification(this.state.name)}>Notification <Badge variant="primary">({this.state.temp})</Badge>{' '}</Dropdown.Item>
+                        <Dropdown.Item onClick={()=>this.notification(this.state.name)}>Notification <Badge variant="primary">({this.state.tempnot})</Badge>{' '}</Dropdown.Item>
                         <Dropdown.Divider />
                         <Dropdown.Item onClick={() => this.LogOutUserClicked()} >Log Out</Dropdown.Item>
                         </Dropdown.Menu>
@@ -306,7 +308,7 @@ class SearchUser extends Component {
                       <h5 class="day">{user.startDt}</h5>
 				  </div>
 				  <div class="media-body">
-				    <a href=""><h5 class="mt-0">{user.username}</h5></a>
+				    <a><h5 class="mt-0">{user.username}</h5></a>
                     <p>Location: <h5>{user.placeOfStay}</h5></p>
 				    A Journey of {user.participants} people about {user.days} days which include activities such as {user.activities}. Travel By {user.modeOfTravel} and spend night at {user.modeOfStay}!
 				    {/* <a href="blog-post-left-sidebar.html" class="post-link">Read More</a> */}

@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import './UserDetails.css';
 import FriendDataService from './service/FriendDataService';
 import PlanDataService from './service/PlanDataService';
 import RequestDataService from './service/RequestDataService';
@@ -126,7 +127,7 @@ class UserDetails extends Component {
                 {this.state.message && <div class="alert alert-success">{this.state.message}</div>}
                 <div className="container">
                     <table className="table">
-                        <tbody>
+                        {/* <tbody>
                                                          
                             <tr><td>{this.state.name}</td></tr>
                             <tr><td>{this.state.user.email}</td></tr>
@@ -137,12 +138,38 @@ class UserDetails extends Component {
                                         
                                 
                             
-                        </tbody>
+                        </tbody> */}
                     </table>
                     
                 </div>
                 </div>
             </div>
+            {/*  */}
+            <div id="cards_landscape_wrap-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <a>
+                        <div class="card-flyer">
+                            <div class="text-box">
+                                <div class="image-box">
+                                    <img src="https://cdn.pixabay.com/photo/2018/03/30/15/11/deer-3275594_960_720.jpg" alt="" />
+                                </div>
+                                <div class="text-container">
+                                    <h6>{this.state.name}</h6>
+                                    <p>{this.state.user.email}</p>
+                                    <p>{this.state.user.phone}</p>
+                                    {/* <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p> */}
+                                </div>
+                                <button className="btn btn-success mr-3 mb-3" onClick={() => this.updateUserClicked(this.state.name)}>Update</button>
+                                <button className="btn btn-warning mb-3" onClick={() => this.deleteUserClicked()}>Delete</button>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                </div>
+                </div>
+                </div>
             </>
         )
     }
