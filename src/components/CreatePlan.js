@@ -80,7 +80,7 @@ searchUser(name){
         let { tempnot } = this.state
         return (
             <>
-            <Navbar bg="dark" variant="dark" expand="lg">
+            <Navbar bg="dark" variant="dark" expand="lg" className="fixed-top">
                 <Navbar.Brand href="#home">Bon Voyage</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -113,9 +113,9 @@ searchUser(name){
                 </Nav>
                 </Navbar.Collapse>
             </Navbar>
-            <div className="container mt-3">
+            <div className="container mt-5">
                 {/* <button className="btn btn-warning mb-3" onClick={()=>{this.props.history.push(`/homemain/${this.state.name}`)}}>Go Back</button> */}
-                <h1>Create Travel Plan {this.state.name}</h1>
+                <h1 className="mt-2">Create Travel Plan {this.state.name}</h1>
                 <form onSubmit={this.handleSubmit}>
                     <div class="form-group row">
                         <label for="staticEmail" class="col-sm-2 col-form-label">Name:</label>

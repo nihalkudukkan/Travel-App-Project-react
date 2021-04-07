@@ -79,7 +79,7 @@ searchUser(name){
         let { tempnot } = this.state
         return (
             <>
-            <Navbar bg="dark" variant="dark" expand="lg">
+            <Navbar bg="dark" variant="dark" expand="lg" className="fixed-top">
                 <Navbar.Brand href="#home">Bon Voyage</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -112,17 +112,18 @@ searchUser(name){
                 </Nav>
                 </Navbar.Collapse>
             </Navbar>
-            <div className="container">
+            <div className="container mt-5">
+            <div className="mt-4">
                 {/* <button className="btn btn-warning" onClick={()=>{this.props.history.push(`/homemain/${this.state.name}`)}}>Go Back</button> */}
-                <h1>Notification for {this.state.name}</h1>
-                <table className="table">
-                    <thead>
+                <h1>Notifications for You</h1>
+                <table className="table mt-3">
+                    {/* <thead>
                             <tr>                                
                                 <th>From</th>
                                 <th>Accept</th>
                                 <th>Delete</th>
                             </tr>
-                    </thead>
+                    </thead> */}
                     <tbody>
                             {
                                 this.state.req.map(
@@ -136,6 +137,7 @@ searchUser(name){
                             }
                         </tbody>
                 </table>
+                </div>
             </div>
             </>
         );

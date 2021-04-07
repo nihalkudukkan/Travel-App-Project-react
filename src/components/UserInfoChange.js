@@ -162,7 +162,7 @@ searchUser(name){
         let { tempnot } = this.state
         return (
             <>
-            <Navbar bg="dark" variant="dark" expand="lg">
+            <Navbar bg="dark" variant="dark" expand="lg" className="fixed-top">
                 <Navbar.Brand href="#home">Bon Voyage</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -195,7 +195,8 @@ searchUser(name){
                 </Nav>
                 </Navbar.Collapse>
             </Navbar>
-            <div className="container mt-3">
+            <div className="container mt-5">
+                <div className="mt-5">
                 {/* <button className="btn btn-warning" onClick={()=>{this.props.history.push(`/homemain/${this.state.name}`)}}>Go Back</button> */}
                 <h3 className="d-flex justify-content-center">Edit Your Profile</h3>
                 <form onSubmit={this.handleSubmit}>
@@ -237,6 +238,7 @@ searchUser(name){
                       
                     <input class="btn btn-primary" type="submit" value="Submit" />
                 </form>
+                </div>
             </div>
             </>
           );

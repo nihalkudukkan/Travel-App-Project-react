@@ -114,7 +114,7 @@ class MyTravelPlan extends Component {
         let { tempnot } = this.state
         return (
             <>
-            <Navbar bg="dark" variant="dark" expand="lg">
+            <Navbar bg="dark" variant="dark" expand="lg" className="fixed-top">
                 <Navbar.Brand href="#home">Bon Voyage</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">

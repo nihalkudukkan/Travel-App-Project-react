@@ -86,7 +86,7 @@ class UserDetails extends Component {
         let { tempnot } = this.state
         return (
             <>
-            <Navbar bg="dark" variant="dark" expand="lg">
+            <Navbar bg="dark" variant="dark" expand="lg" className="fixed-top">
                 <Navbar.Brand href="#home">Bon Voyage</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -119,7 +119,8 @@ class UserDetails extends Component {
                 </Nav>
                 </Navbar.Collapse>
             </Navbar>
-            <div className="container mt-3">
+            <div className="container mt-5">
+                <div className="mt-5">
                 {/* <button className="btn btn-warning" onClick={()=>{this.props.history.push(`/homemain/${this.state.name}`)}}>Go Back</button> */}
                 <h3>User Details</h3>
                 {this.state.message && <div class="alert alert-success">{this.state.message}</div>}
@@ -139,6 +140,7 @@ class UserDetails extends Component {
                         </tbody>
                     </table>
                     
+                </div>
                 </div>
             </div>
             </>

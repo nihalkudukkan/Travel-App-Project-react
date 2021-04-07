@@ -141,7 +141,7 @@ class SearchUser extends Component {
         let { tempnot } = this.state
         return (
             <>
-            <Navbar bg="dark" variant="dark" expand="lg">
+            <Navbar bg="dark" variant="dark" expand="lg" className="fixed-top">
                 <Navbar.Brand href="#home">Bon Voyage</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -174,7 +174,7 @@ class SearchUser extends Component {
                 </Nav>
                 </Navbar.Collapse>
             </Navbar>
-            <div className="container">
+            <div className="container mt-5">
             {/* <button className="btn btn-warning" onClick={()=>{this.props.history.push(`/homemain/${this.state.name}`)}}>Go Back</button> */}
             <div className="border py-5 my-2">
                 <h3 className="d-flex justify-content-center">Search for Users or Plans</h3>

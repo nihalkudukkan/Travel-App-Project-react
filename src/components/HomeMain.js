@@ -75,7 +75,7 @@ class HomeMain extends Component {
         let { temp } = this.state
         return (
             <>
-            <Navbar bg="dark" variant="dark" expand="lg">
+            <Navbar bg="dark" variant="dark" expand="lg" className="fixed-top">
                 <Navbar.Brand href="#home">Bon Voyage</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -164,7 +164,7 @@ class HomeMain extends Component {
                         </tbody>
                     </table> */}
                     <section class="home-blog bg-sand">
-    <div class="container">
+    <div class="container mt-4">
 		<div class="row justify-content-md-center">
 			<div class="col-xl-5 col-lg-6 col-md-8">
 				<div class="section-title text-center title-ex1">
