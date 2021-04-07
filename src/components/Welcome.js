@@ -83,6 +83,8 @@ class Welcome extends Component {
     render() { 
         let { username, password } = this.state
         return (
+            <>
+            <h1 className="display-1 d-flex justify-content-center">Bon Voyage</h1>
             <div className="border mx-5 py-5">
                 <h3 className="d-flex justify-content-center">Login</h3>
                 <div className="container">
@@ -125,6 +127,7 @@ class Welcome extends Component {
 
                 </div>
             </div>
+            </>
         );
     }
 }

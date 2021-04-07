@@ -15,16 +15,7 @@ class MyTravelPlan extends Component {
             alluser:[],
             temp:[],
             tempnot:0,
-            // tmp:{activities: "",
-            //     cost: 0,
-            //     days: "",
-            //     id: '',
-            //     modeOfStay: "",
-            //     modeOfTravel: "",
-            //     participants: 3,
-            //     placeOfStay: "",
-            //     startDt: "",
-            //     username: ""},
+            
             tmp:[],
             name: this.props.match.params.name,
         }
@@ -66,7 +57,7 @@ class MyTravelPlan extends Component {
                                                     res=>{
                                                         this.setState({tmp:res.data})
                                                         // document.getElementById("demo").innerHTML = this.state.tmp;
-                                                        console.log(res.data);
+                                                        // console.log(res.data);
                                                         // console.log(this.state.tmp);
                                                     }
                                                 )
@@ -124,7 +115,7 @@ class MyTravelPlan extends Component {
         return (
             <>
             <Navbar bg="dark" variant="dark" expand="lg">
-                <Navbar.Brand href="#home">Travel Application</Navbar.Brand>
+                <Navbar.Brand href="#home">Bon Voyage</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">

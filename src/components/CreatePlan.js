@@ -81,7 +81,7 @@ searchUser(name){
         return (
             <>
             <Navbar bg="dark" variant="dark" expand="lg">
-                <Navbar.Brand href="#home">Travel Application</Navbar.Brand>
+                <Navbar.Brand href="#home">Bon Voyage</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
@@ -91,7 +91,7 @@ searchUser(name){
                     <Nav.Link onClick={() => this.props.history.push(`/friend/${this.state.name}`)}>Friends</Nav.Link>
                     <Nav.Link onClick={()=>this.searchUser(this.state.name)}>Search</Nav.Link>
                 </Nav>
-                <Nav className="margin">
+                <Nav className="margin" style={{marginRight:  '5em'}}>
                     <Dropdown>
                     <Dropdown.Toggle bg="dark" variant="dark" id="dropdown-basic">
                     {this.state.tempnot!==0?

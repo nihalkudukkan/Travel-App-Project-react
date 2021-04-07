@@ -75,6 +75,7 @@ class UserComponent extends Component {
         let { username, password } = this.state
         return (
             <div>
+                <h1 className="display-1 d-flex justify-content-center">Bon Voyage</h1>
                 <h3 className="d-flex justify-content-center">Register</h3>
                 <div className="container">
                     <Formik

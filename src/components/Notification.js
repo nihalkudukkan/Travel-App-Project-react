@@ -28,7 +28,7 @@ class Notification extends Component {
                         req: response.data
                     })
                     // console.log(this.state.req);
-                    console.log(this.state.req.length);
+                    // console.log(this.state.req.length);
                 }
             )
     }
@@ -80,7 +80,7 @@ searchUser(name){
         return (
             <>
             <Navbar bg="dark" variant="dark" expand="lg">
-                <Navbar.Brand href="#home">Travel Application</Navbar.Brand>
+                <Navbar.Brand href="#home">Bon Voyage</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
