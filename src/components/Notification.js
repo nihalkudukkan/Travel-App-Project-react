@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import FriendDataService from './service/FriendDataService';
 import RequestDataService from './service/RequestDataService';
+import PlanNotificationService from './service/PlanNotificationService';
 import { Button,Badge, Navbar, Nav, NavDropdown,Form,Dropdown, FormControl } from 'react-bootstrap';
 import Badges from '@material-ui/core/Badge';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import PlanDataService from './service/PlanDataService';
 
 class Notification extends Component {
     constructor(props){
@@ -11,13 +13,29 @@ class Notification extends Component {
         this.state = {
             name: this.props.match.params.name,
             req:[],
-            tempnot:0
+            tempnot:0,
+            planOnNotification:[],
+            showPlanTemp:0,
+            planNotifications:[]
         }
         this.refreshNotification = this.refreshNotification.bind(this)
+        this.refreshPlanNotification = this.refreshPlanNotification.bind(this)
     }
 
     componentDidMount() {
         this.refreshNotification();
+        this.refreshPlanNotification();
+    }
+
+    refreshPlanNotification() {
+        PlanNotificationService.getPlanRequestByReceiverName(this.state.name)
+            .then(
+                response=> {
+                    this.setState({
+                        planNotifications:response.data
+                    })
+                }
+            )
     }
 
     refreshNotification() {
@@ -49,6 +67,23 @@ class Notification extends Component {
         alert("Request deleted");
         window.location.reload(false);
     }
+    showPlanOnNotification(id){
+        PlanDataService.retrieveById(id)
+            .then(
+                response=>{
+                    this.setState({
+                        planOnNotification:response.data,
+                        showPlanTemp:id
+                    })
+                }
+            )
+    }
+    removePlanNotification(id){
+        PlanNotificationService.deletePlanRequestNotification(id);
+        alert("Plan Deleted");
+        window.location.reload(false);
+    }
+
     // 
 LogOutUserClicked(){
     this.props.history.push(`/`)
@@ -129,16 +164,60 @@ searchUser(name){
                                 this.state.req.map(
                                     (i) =>
                                         <tr key={i.id}>
-                                            <td>{i.sender}</td>
+                                            <td>{i.sender} has requested you to be his friend</td>
                                             <td><button className="btn btn-success" onClick={()=> this.handleAccept(i)}>Accept</button></td>
                                             <td><button className="btn btn-warning" onClick={()=> this.handleRemove(i.id)}>Reject</button></td>
                                         </tr>
                                 )
                             }
                         </tbody>
+                    <tbody>
+                            {
+                                this.state.planNotifications.map(
+                                    (i) =>
+                                        <tr key={i.id}>
+                                            <td>{i.sender} has requested for connecting to your plan</td>
+                                            <td>{i.planId}</td>
+                                            <td>Participants: {i.participants}</td>
+                                            <td><button className="btn btn-success" onClick={()=>this.showPlanOnNotification(i.planId)}>Show Plan</button></td>
+                                            <td><button className="btn btn-success">Accept</button></td>
+                                            <td><button className="btn btn-warning" onClick={()=>this.removePlanNotification(i.id)}>Decline</button></td>
+                                        </tr>
+                                )
+                            }
+                        </tbody>
                 </table>
+                {/*  */}
+                {this.state.showPlanTemp===0?
+                <></>:
+                <div class="col-md-6">
+				<div class="media blog-media">
+				  <a><img class="d-flex" src="https://i.picsum.photos/id/406/250/380.jpg?grayscale&hmac=g0rpcuDfLepEMU008-qnAF87LKYMjwUEJk9xGlEwkPE" alt="Generic placeholder image" /></a>
+				  <div class="circle">
+				  	{/* <h5 class="day">14 sep</h5>
+				  	<span class="month">sep</span> */}
+                      <h5 class="day">{this.state.planOnNotification.startDt}</h5>
+				  </div>
+				  <div class="media-body">
+				    <a href=""><h5 class="mt-0">{this.state.planOnNotification.username}</h5></a>
+                    <p>Location: <h5>{this.state.planOnNotification.placeOfStay}</h5></p>
+				    A Journey of {this.state.planOnNotification.participants} people about {this.state.planOnNotification.days} days which include activities such as {this.state.planOnNotification.activities}. Travel By {this.state.planOnNotification.modeOfTravel} and spend night at {this.state.planOnNotification.modeOfStay}!
+				    {/* <a href="blog-post-left-sidebar.html" class="post-link">Read More</a> */}
+				    <ul  className="mt-2">
+				    	<li>Cost: {this.state.planOnNotification.cost}</li>
+                        <div className="mt-3">
+                        </div>
+				    	{/* <li class="text-right"><a href="blog-post-left-sidebar.html">07 comments</a></li> */}
+				    </ul>
+				  </div>
+				</div>
+			</div>
+                }
+                
+                {/*  */}
                 </div>
             </div>
+            
             </>
         );
     }

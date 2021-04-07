@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FriendDataService from './service/FriendDataService';
+import PlanNotificationService from './service/PlanNotificationService';
 import { Button,Badge, Navbar, Nav, NavDropdown,Form,Dropdown, FormControl } from 'react-bootstrap';
 import Badges from '@material-ui/core/Badge';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -15,8 +16,11 @@ class FriendList extends Component {
             planName:'',
             loadPlans:[],
             planNametemp:0,
+            planNotTemp:0,
+            participants:0,
             tempnot:0
         }
+        this.handleChange = this.handleChange.bind(this)
         this.fetchUserFriends = this.fetchUserFriends.bind(this)
         this.fetchConnectFriends = this.fetchConnectFriends.bind(this)
     }
@@ -54,6 +58,33 @@ class FriendList extends Component {
                     })
                 }
             )
+    }
+    sendConnectionRequest(ids, name, numbers){
+        let PlanNotification = {
+            sender:this.state.name,
+            receiver:name,
+            planId:ids,
+            participants:this.state.participants
+        }
+        
+        if (PlanNotification.participants===0) {
+            alert("Cannot send request for zero partcipants");
+        } else {
+            if(PlanNotification.participants > numbers) {
+                alert("Cannot send request for partcipants more than required");
+            } else {
+                this.setState({planNotTemp:ids})
+                PlanNotificationService.sendPlanRequest(PlanNotification);
+                alert("Request Send");
+            }
+        }
+        
+    }
+
+    handleChange(event) {
+        this.setState({
+            [event.target.name] : event.target.value
+          })
     }
 
     //
@@ -118,7 +149,7 @@ class FriendList extends Component {
                 </Nav>
                 </Navbar.Collapse>
             </Navbar>
-            <div className="container mt-3">
+            <div className="container my-3">
                 {/* <button className="btn btn-warning mb-3" onClick={()=>{this.props.history.push(`/homemain/${this.state.name}`)}}>Go Back</button> */}
                 <h1>{this.state.name}'s Friends</h1>
                 <table className="table">
@@ -151,11 +182,20 @@ class FriendList extends Component {
             </div>
                     {this.state.loadPlans.map(
                         i=><div className="container"> 
+                            <p>{i.id}</p>
                             <p>{i.placeOfStay}</p>
                             <p>{i.startDt}</p>
                             <p>Participants: {i.participants}</p>
                             <p>Cost: {i.cost}</p>
-                            <button className="btn btn-primary">Connect</button>
+                            <form>
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">participants:</label>
+                                    <div class="col-sm-10">
+                                    <input type="number" name="participants" readonly class="form-control" onChange={this.handleChange}/>
+                                    </div>
+                                </div>
+                            </form>
+                            {this.state.planNotTemp===i.id?<p>Request Send</p>:<button className="btn btn-primary mb-3" onClick={()=>this.sendConnectionRequest(i.id, i.username, i.participants)}>Connect</button>}
                         </div>
                     )}
             </>
