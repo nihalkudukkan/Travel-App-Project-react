@@ -185,7 +185,8 @@ class FriendList extends Component {
                             <p>{i.id}</p>
                             <p>{i.placeOfStay}</p>
                             <p>{i.startDt}</p>
-                            <p>Participants: {i.participants}</p>
+                            <p>Total Slots: {i.participants}</p>
+                            <p>Remaining slots: {i.slots}</p>
                             <p>Cost: {i.cost}</p>
                             <form>
                                 <div class="form-group row">
@@ -195,7 +196,7 @@ class FriendList extends Component {
                                     </div>
                                 </div>
                             </form>
-                            {this.state.planNotTemp===i.id?<p>Request Send</p>:<button className="btn btn-primary mb-3" onClick={()=>this.sendConnectionRequest(i.id, i.username, i.participants)}>Connect</button>}
+                            {this.state.planNotTemp===i.id?<p>Request Send</p>:<button className="btn btn-primary mb-3" onClick={()=>this.sendConnectionRequest(i.id, i.username, i.slots)}>Connect</button>}
                         </div>
                     )}
             </>

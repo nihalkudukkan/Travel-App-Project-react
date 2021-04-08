@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FriendDataService from './service/FriendDataService';
 import RequestDataService from './service/RequestDataService';
+import ConnectedPlanService from './service/ConnectedPlanService';
 import PlanNotificationService from './service/PlanNotificationService';
 import { Button,Badge, Navbar, Nav, NavDropdown,Form,Dropdown, FormControl } from 'react-bootstrap';
 import Badges from '@material-ui/core/Badge';
@@ -34,6 +35,7 @@ class Notification extends Component {
                     this.setState({
                         planNotifications:response.data
                     })
+                    // console.log(response.data);
                 }
             )
     }
@@ -82,6 +84,40 @@ class Notification extends Component {
         PlanNotificationService.deletePlanRequestNotification(id);
         alert("Plan Deleted");
         window.location.reload(false);
+    }
+
+    acceptPlanNotification(i) {
+        PlanDataService.retrieveById(i.planId)
+            .then(
+                response=>{
+                    let Plan = {
+                        id:response.data.id,
+                        username:response.data.username,
+                        placeOfStay:response.data.placeOfStay,
+                        modeOfTravel:response.data.modeOfTravel,
+                        modeOfStay:response.data.modeOfStay,
+                        days:response.data.days,
+                        startDt:response.data.startDt,
+                        activities:response.data.activities,
+                        participants:response.data.participants,
+                        slots: (response.data.participants-i.participants),
+                        cost: response.data.cost,
+                    }
+                    // console.log(Plan);
+                    PlanDataService.postPlan(Plan);
+                    let post = {
+                        connected:i.sender,
+                        receiver:response.data.username,
+                        planId:i.planId,
+                        slots:i.participants
+                    }
+                    // console.log(post);
+                    ConnectedPlanService.postRequest(post);
+                    PlanNotificationService.deletePlanRequestNotification(i.id);
+                    alert("Slots Updated");
+                    window.location.reload(false);
+                }
+            )
     }
 
     // 
@@ -178,9 +214,9 @@ searchUser(name){
                                         <tr key={i.id}>
                                             <td>{i.sender} has requested for connecting to your plan</td>
                                             <td>{i.planId}</td>
-                                            <td>Participants: {i.participants}</td>
+                                            <td>Participants from {i.sender}: {i.participants}</td>
                                             <td><button className="btn btn-success" onClick={()=>this.showPlanOnNotification(i.planId)}>Show Plan</button></td>
-                                            <td><button className="btn btn-success">Accept</button></td>
+                                            <td><button className="btn btn-success" onClick={()=>this.acceptPlanNotification(i)}>Accept</button></td>
                                             <td><button className="btn btn-warning" onClick={()=>this.removePlanNotification(i.id)}>Decline</button></td>
                                         </tr>
                                 )
@@ -199,12 +235,13 @@ searchUser(name){
                       <h5 class="day">{this.state.planOnNotification.startDt}</h5>
 				  </div>
 				  <div class="media-body">
-				    <a href=""><h5 class="mt-0">{this.state.planOnNotification.username}</h5></a>
+				    <a><h5 class="mt-0">{this.state.planOnNotification.username}</h5></a>
                     <p>Location: <h5>{this.state.planOnNotification.placeOfStay}</h5></p>
 				    A Journey of {this.state.planOnNotification.participants} people about {this.state.planOnNotification.days} days which include activities such as {this.state.planOnNotification.activities}. Travel By {this.state.planOnNotification.modeOfTravel} and spend night at {this.state.planOnNotification.modeOfStay}!
 				    {/* <a href="blog-post-left-sidebar.html" class="post-link">Read More</a> */}
 				    <ul  className="mt-2">
 				    	<li>Cost: {this.state.planOnNotification.cost}</li>
+                        <li>Slots Available: {this.state.planOnNotification.slots}</li>
                         <div className="mt-3">
                         </div>
 				    	{/* <li class="text-right"><a href="blog-post-left-sidebar.html">07 comments</a></li> */}

@@ -4,6 +4,7 @@ import PlanDataService from './service/PlanDataService';
 import { Button,Badge, Navbar, Nav, NavDropdown,Form,Dropdown, FormControl } from 'react-bootstrap';
 import Badges from '@material-ui/core/Badge';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ConnectedPlanService from './service/ConnectedPlanService';
 
 class MyTravelPlan extends Component {
     constructor(props){
@@ -15,16 +16,46 @@ class MyTravelPlan extends Component {
             alluser:[],
             temp:[],
             tempnot:0,
-            
+            connectedPlans:[],
+            connectedPlansReceiver:[],
+            connectedPlansholder:[],
+            connectedPlanstemp:0,
             tmp:[],
             name: this.props.match.params.name,
         }
         // this.fetchUserFriends = this.fetchUserFriends.bind(this)
         // this.fetchConnectFriends = this.fetchConnectFriends.bind(this)
         this.refreshPlan = this.refreshPlan.bind(this)
+        this.refreshConnectedPlan = this.refreshConnectedPlan.bind(this)
     }
     componentDidMount() {
         this.refreshPlan();
+        this.refreshConnectedPlan();
+    }
+
+    refreshConnectedPlan() {
+        ConnectedPlanService.getByConnName(this.state.name)
+            .then(
+                response=> {
+                    this.setState({connectedPlans:response.data})
+                }
+            )
+        ConnectedPlanService.getByReceiver(this.state.name)
+            .then(
+                response=>{
+                    this.setState({connectedPlansReceiver:response.data})
+                }
+            )
+    }
+
+    showConnectedPlan(id) {
+        PlanDataService.retrieveById(id)
+            .then(
+                response=>{
+                    this.setState({connectedPlansholder:response.data, connectedPlanstemp:response.data.planId})
+                    console.log(this.state.connectedPlansholder);
+                }
+            )
     }
 
     refreshPlan() {
@@ -50,7 +81,6 @@ class MyTravelPlan extends Component {
                                             MyPlan: response.data,
                                             // temp: this.state.alluser.split(" ")
                                         })
-                                        console.log(this.state.temp);
                                         this.state.temp.map(k=>(
                                             PlanDataService.retrieveUserPlan(k)
                                                 .then(
@@ -147,7 +177,7 @@ class MyTravelPlan extends Component {
                 </Nav>
                 </Navbar.Collapse>
             </Navbar>
-            <div className="container mt-3">
+            <div className="container my-3">
                 {/* <button className="btn btn-warning" onClick={()=>{this.props.history.push(`/homemain/${this.state.name}`)}}>Go Back</button> */}
                 <h1>Travel Plans of {this.state.name}</h1>
                 {/* <table className="table">
@@ -220,10 +250,11 @@ class MyTravelPlan extends Component {
 				  <div class="media-body">
 				    <a href=""><h5 class="mt-0">{user.username}</h5></a>
                     <p>Location: <h5>{user.placeOfStay}</h5></p>
-				    A Journey of {user.participants} people about {user.days} days which include activities such as {user.activities}. Travel By {user.modeOfTravel} and spend night at {user.modeOfStay}!
+				    A Journey of me and {user.participants} people about {user.days} days which include activities such as {user.activities}. Travel By {user.modeOfTravel} and spend night at {user.modeOfStay}!
 				    {/* <a href="blog-post-left-sidebar.html" class="post-link">Read More</a> */}
 				    <ul  className="mt-2">
 				    	<li>Cost: {user.cost}</li>
+				    	<li>Slots Available: {user.slots}</li>
                         <div className="mt-3">
                         <button className="btn btn-success mr-3" onClick={() => this.editPlan(user.id)}>Update</button>
                         <button className="btn btn-warning" onClick={() => this.removePlan(user.id)} >Remove</button>
@@ -236,6 +267,59 @@ class MyTravelPlan extends Component {
             )    
         }
 
+            </div>
+            <div className="container">
+                <h2>Connected Plans</h2>
+                <table className="table">
+                <tbody>
+                {this.state.connectedPlans.map(
+                    i=>
+                    <div>
+                        <tr key={i.id}>
+                            <td>Connected to {i.receiver}</td>
+                            <td>Used slots {i.slots}</td>
+                            <button className="btn btn-primary" onClick={()=>this.showConnectedPlan(i.planId)}>Show Plan</button>
+                        </tr>
+                    </div>
+                )}
+                {this.state.connectedPlansReceiver.map(
+                    i=>
+                    <div>
+                        <tr key={i.id}>
+                            <td>Connector: {i.connected}</td>
+                            <td>Used slots {i.slots}</td>
+                            <button className="btn btn-primary" onClick={()=>this.showConnectedPlan(i.planId)}>Show Plan</button>
+                        </tr>
+                    </div>
+                )}
+                </tbody>
+                </table>
+                {this.state.connectedPlanstemp===0?
+                <></>:
+                <div class="col-md-6">
+				<div class="media blog-media">
+				  <a><img class="d-flex" src="https://i.picsum.photos/id/406/250/380.jpg?grayscale&hmac=g0rpcuDfLepEMU008-qnAF87LKYMjwUEJk9xGlEwkPE" alt="Generic placeholder image" /></a>
+				  <div class="circle">
+				  	{/* <h5 class="day">14 sep</h5>
+				  	<span class="month">sep</span> */}
+                      <h5 class="day">{this.state.connectedPlansholder.startDt}</h5>
+				  </div>
+				  <div class="media-body">
+				    <a><h5 class="mt-0">{this.state.connectedPlansholder.username}</h5></a>
+                    <p>Location: <h5>{this.state.connectedPlansholder.placeOfStay}</h5></p>
+				    A Journey of {this.state.connectedPlansholder.participants} people about {this.state.connectedPlansholder.days} days which include activities such as {this.state.connectedPlansholder.activities}. Travel By {this.state.connectedPlansholder.modeOfTravel} and spend night at {this.state.connectedPlansholder.modeOfStay}!
+				    {/* <a href="blog-post-left-sidebar.html" class="post-link">Read More</a> */}
+				    <ul  className="mt-2">
+				    	<li>Cost: {this.state.connectedPlansholder.cost}</li>
+                        <li>Slots Available: {this.state.connectedPlansholder.slots}</li>
+                        <div className="mt-3">
+                        </div>
+				    	{/* <li class="text-right"><a href="blog-post-left-sidebar.html">07 comments</a></li> */}
+				    </ul>
+				  </div>
+				</div>
+			</div>
+                }
             </div>
             </>
         );

@@ -5,6 +5,7 @@ import RequestDataService from './service/RequestDataService';
 import { Button,Badge, Navbar, Nav, NavDropdown,Form,Dropdown, FormControl } from 'react-bootstrap';
 import Badges from '@material-ui/core/Badge';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import PlanNotificationService from './service/PlanNotificationService';
 
 
 class HomeMain extends Component {
@@ -39,11 +40,18 @@ class HomeMain extends Component {
                   this.setState({
                       req: response.data
                   })
-                  // console.log(this.state.req);
-                  // console.log(this.state.req.length);
                   this.setState({
                     temp:this.state.req.length
                   })
+                  PlanNotificationService.getPlanRequestByReceiverName(this.state.name)
+                    .then(
+                      response=> {
+                        // console.log(response.data.length);
+                        this.setState({
+                          temp:this.state.temp+response.data.length
+                        })
+                      }
+                    )
               }
           )
   }
@@ -188,10 +196,11 @@ class HomeMain extends Component {
 				  <div class="media-body">
 				    <a href=""><h5 class="mt-0">{user.username}</h5></a>
                     <p>Location: <h5>{user.placeOfStay}</h5></p>
-				    A Journey of {user.participants} people about {user.days} days which include activities such as {user.activities}. Travel By {user.modeOfTravel} and spend night at {user.modeOfStay}!
+				    A Journey of me and {user.participants} people about {user.days} days which include activities such as {user.activities}. Travel By {user.modeOfTravel} and spend night at {user.modeOfStay}!
 				    {/* <a href="blog-post-left-sidebar.html" class="post-link">Read More</a> */}
 				    <ul  className="mt-2">
 				    	<li>Cost: {user.cost}</li>
+              <li>Slots Available: {user.slots}</li>
 				    	{/* <li class="text-right"><a href="blog-post-left-sidebar.html">07 comments</a></li> */}
 				    </ul>
 				  </div>

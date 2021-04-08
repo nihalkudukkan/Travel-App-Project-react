@@ -35,6 +35,7 @@ class CreatePlan extends Component {
             startDt: this.state.startDt,
             activities: this.state.activities,
             participants: this.state.participants,
+            slots: this.state.participants,
             cost: this.state.cost,
         }
         // console.log(Plan);
