@@ -12,7 +12,7 @@ class UserInfo extends Component {
             Categories:[]
         }
 
-         this.onSubmit = this.onSubmit.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
         // this.validate = this.validate.bind(this)
         this.fetchData = this.fetchData.bind(this)
         this.refreshCourses = this.refreshCourses.bind(this)

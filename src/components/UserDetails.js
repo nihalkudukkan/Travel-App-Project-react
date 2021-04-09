@@ -4,9 +4,10 @@ import FriendDataService from './service/FriendDataService';
 import PlanDataService from './service/PlanDataService';
 import RequestDataService from './service/RequestDataService';
 import UserDataService from './service/UserDataService';
-import { Button,Badge, Navbar, Nav, NavDropdown,Form,Dropdown, FormControl } from 'react-bootstrap';
+import { Badge, Navbar, Nav,Dropdown } from 'react-bootstrap';
 import Badges from '@material-ui/core/Badge';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ConnectedPlanService from './service/ConnectedPlanService';
 
 
 
@@ -49,6 +50,8 @@ class UserDetails extends Component {
         RequestDataService.deleteRequestByReceiver(this.state.name)
         FriendDataService.deleteFriendByConnect(this.state.name)
         FriendDataService.deleteFriendByName(this.state.name)
+        ConnectedPlanService.deleteByReceiver(this.state.name)
+        ConnectedPlanService.deleteByConnector(this.state.name)
         this.props.history.push(`/`);
     }
 
@@ -88,7 +91,7 @@ class UserDetails extends Component {
         return (
             <>
             <Navbar bg="dark" variant="dark" expand="lg" className="fixed-top">
-                <Navbar.Brand href="#home">Bon Voyage</Navbar.Brand>
+                <Navbar.Brand href="#home" className="mb-1">Bon Voyage</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">

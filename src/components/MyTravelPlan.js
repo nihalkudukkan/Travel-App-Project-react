@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import FriendDataService from './service/FriendDataService';
 import PlanDataService from './service/PlanDataService';
-import { Button,Badge, Navbar, Nav, NavDropdown,Form,Dropdown, FormControl } from 'react-bootstrap';
+import { Badge, Navbar, Nav, Dropdown } from 'react-bootstrap';
 import Badges from '@material-ui/core/Badge';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ConnectedPlanService from './service/ConnectedPlanService';
@@ -107,6 +107,7 @@ class MyTravelPlan extends Component {
     removePlan(id){
         // console.log("Removed");
         PlanDataService.deletePlanId(id);
+        ConnectedPlanService.deleteByPlanId(id);
         alert("Plan Deleted");
         window.location.reload(false);
     }
@@ -145,13 +146,13 @@ class MyTravelPlan extends Component {
         return (
             <>
             <Navbar bg="dark" variant="dark" expand="lg" className="fixed-top">
-                <Navbar.Brand href="#home">Bon Voyage</Navbar.Brand>
+                <Navbar.Brand href="#home" className="mb-2">Bon Voyage</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                     <Nav.Link onClick={()=>{this.props.history.push(`/homemain/${this.state.name}`)}}>Home</Nav.Link>
                     <Nav.Link onClick={() => this.CreatePlanClicked(this.state.name)}>Create Travel Plan</Nav.Link>
-                    <Nav.Link onClick={() => this.yourPlan(this.state.name)}>Your Plans</Nav.Link>
+                    <Nav.Link onClick={() => this.yourPlan(this.state.name)}><h5 className="text-light">Your Plans</h5></Nav.Link>
                     <Nav.Link onClick={() => this.props.history.push(`/friend/${this.state.name}`)}>Friends</Nav.Link>
                     <Nav.Link onClick={()=>this.searchUser(this.state.name)}>Search</Nav.Link>
                 </Nav>

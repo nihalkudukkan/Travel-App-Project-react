@@ -3,7 +3,7 @@ import FriendDataService from './service/FriendDataService';
 import RequestDataService from './service/RequestDataService';
 import ConnectedPlanService from './service/ConnectedPlanService';
 import PlanNotificationService from './service/PlanNotificationService';
-import { Button,Badge, Navbar, Nav, NavDropdown,Form,Dropdown, FormControl } from 'react-bootstrap';
+import { Badge, Navbar, Nav,Dropdown } from 'react-bootstrap';
 import Badges from '@material-ui/core/Badge';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import PlanDataService from './service/PlanDataService';
@@ -213,7 +213,7 @@ searchUser(name){
                                     (i) =>
                                         <tr key={i.id}>
                                             <td>{i.sender} has requested for connecting to your plan</td>
-                                            <td>{i.planId}</td>
+                                            {/* <td>{i.planId}</td> */}
                                             <td>Participants from {i.sender}: {i.participants}</td>
                                             <td><button className="btn btn-success" onClick={()=>this.showPlanOnNotification(i.planId)}>Show Plan</button></td>
                                             <td><button className="btn btn-success" onClick={()=>this.acceptPlanNotification(i)}>Accept</button></td>

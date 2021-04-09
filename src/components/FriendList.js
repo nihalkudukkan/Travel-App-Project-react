@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import FriendDataService from './service/FriendDataService';
 import PlanNotificationService from './service/PlanNotificationService';
-import { Button,Badge, Navbar, Nav, NavDropdown,Form,Dropdown, FormControl } from 'react-bootstrap';
+import { Badge, Navbar, Nav,Dropdown } from 'react-bootstrap';
 import Badges from '@material-ui/core/Badge';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import PlanDataService from './service/PlanDataService';
@@ -117,16 +117,17 @@ class FriendList extends Component {
         return (
             <>
             <Navbar bg="dark" variant="dark" expand="lg" className="fixed-top">
-                <Navbar.Brand href="#home">Bon Voyage</Navbar.Brand>
+                <Navbar.Brand href="#home" className="mb-2">Bon Voyage</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                     <Nav.Link onClick={()=>{this.props.history.push(`/homemain/${this.state.name}`)}}>Home</Nav.Link>
                     <Nav.Link onClick={() => this.CreatePlanClicked(this.state.name)}>Create Travel Plan</Nav.Link>
                     <Nav.Link onClick={() => this.yourPlan(this.state.name)}>Your Plans</Nav.Link>
-                    <Nav.Link onClick={() => this.props.history.push(`/friend/${this.state.name}`)}>Friends</Nav.Link>
+                    <Nav.Link onClick={() => this.props.history.push(`/friend/${this.state.name}`)}><h5 className="text-light">Friends</h5></Nav.Link>
                     <Nav.Link onClick={()=>this.searchUser(this.state.name)}>Search</Nav.Link>
                 </Nav>
+                
                 <Nav className="margin" style={{marginRight:  '5em'}}>
                     <Dropdown>
                     <Dropdown.Toggle bg="dark" variant="dark" id="dropdown-basic">
@@ -164,7 +165,8 @@ class FriendList extends Component {
                             user =>
                             <tr key={user.id}>
                                 <td>{user.connect}</td>
-                                <button className="btn btn-primary" onClick={()=>this.showPlansClick(user.connect)}>Show Plans</button>
+                                <button className="btn btn-primary mr-2" onClick={()=>{this.props.history.push(`/showprofile/${this.state.name}/${user.connect}`)}}>Show Profile</button>
+                                {/* <button className="btn btn-primary" onClick={()=>this.showPlansClick(user.connect)}>Show Plans</button> */}
                             </tr>
                         )
                     }
@@ -173,6 +175,7 @@ class FriendList extends Component {
                             i =>
                             <tr key={i.id}>
                                 <td>{i.name}</td>
+                                <button className="btn btn-primary mr-2" onClick={()=>{this.props.history.push(`/showprofile/${this.state.name}/${i.namet}`)}}>Show Profile</button>
                                 <button className="btn btn-primary" onClick={()=>this.showPlansClick(i.name)}>Show Plans</button>
                             </tr>
                         )
@@ -190,7 +193,7 @@ class FriendList extends Component {
                             <p>Cost: {i.cost}</p>
                             <form>
                                 <div class="form-group row">
-                                    <label for="staticEmail" class="col-sm-2 col-form-label">participants:</label>
+                                    <label for="staticEmail" className="col-sm-2 col-form-label">participants:</label>
                                     <div class="col-sm-10">
                                     <input type="number" name="participants" readonly class="form-control" onChange={this.handleChange}/>
                                     </div>

@@ -12,6 +12,15 @@ class ConnectedPlanService {
     getByReceiver(name){
         return axios.get(`${FRIEND_API_URL}/accepted/receiver/${name}`)
     }
+    deleteByPlanId(id){
+        return axios.delete(`${FRIEND_API_URL}/accept/delete/${id}`)
+    }
+    deleteByReceiver(name){
+        return axios.delete(`${FRIEND_API_URL}/accept/del/receiver/${name}`)
+    }
+    deleteByConnector(name){
+        return axios.delete(`${FRIEND_API_URL}/accept/del/connected/${name}`)
+    }
 }
 
 export default new ConnectedPlanService()

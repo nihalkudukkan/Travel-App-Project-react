@@ -14,6 +14,7 @@ import CreatePlan from './CreatePlan';
 import SearchUser from './SearchUser';
 import EditTravelPlan from './EditTravelPlan';
 import FriendList from './FriendList';
+import ShowProfile from './ShowProfile';
 
 class RegApp extends Component {
     render() { 
@@ -34,6 +35,7 @@ class RegApp extends Component {
                         <Route path="/editTravelPlan/:id" component={EditTravelPlan}/>
                         <Route path="/searchuser/:name" component={SearchUser}/>
                         <Route path="/friend/:name" component={FriendList}/>
+                        <Route path="/showprofile/:name/:friend" component={ShowProfile}/>
                     </Switch>
                 </>
             </Router>

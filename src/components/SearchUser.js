@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import UserDataService from './service/UserDataService';
 import RequestDataService from './service/RequestDataService';
 import PlanDataService from './service/PlanDataService';
-import { Button,Badge, Navbar, Nav, NavDropdown,Dropdown, FormControl } from 'react-bootstrap';
+import { Badge, Navbar, Nav,Dropdown } from 'react-bootstrap';
 import Badges from '@material-ui/core/Badge';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
@@ -144,7 +144,7 @@ class SearchUser extends Component {
         return (
             <>
             <Navbar bg="dark" variant="dark" expand="lg" className="fixed-top">
-                <Navbar.Brand href="#home">Bon Voyage</Navbar.Brand>
+                <Navbar.Brand href="#home" className="mb-2">Bon Voyage</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
@@ -152,7 +152,7 @@ class SearchUser extends Component {
                     <Nav.Link onClick={() => this.CreatePlanClicked(this.state.name)}>Create Travel Plan</Nav.Link>
                     <Nav.Link onClick={() => this.yourPlan(this.state.name)}>Your Plans</Nav.Link>
                     <Nav.Link onClick={() => this.props.history.push(`/friend/${this.state.name}`)}>Friends</Nav.Link>
-                    <Nav.Link onClick={()=>this.searchUser(this.state.name)}>Search</Nav.Link>
+                    <Nav.Link onClick={()=>this.searchUser(this.state.name)}><h5 className="text-light">Search</h5></Nav.Link>
                 </Nav>
                 <Nav className="margin" style={{marginRight:  '5em'}}>
                     <Dropdown>

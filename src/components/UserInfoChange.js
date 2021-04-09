@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import UserDataService from './service/UserDataService';
-import { Button,Badge, Navbar, Nav, NavDropdown,Form,Dropdown, FormControl } from 'react-bootstrap';
+import { Badge, Navbar, Nav,Dropdown } from 'react-bootstrap';
 import Badges from '@material-ui/core/Badge';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
@@ -163,7 +163,7 @@ searchUser(name){
         return (
             <>
             <Navbar bg="dark" variant="dark" expand="lg" className="fixed-top">
-                <Navbar.Brand href="#home">Bon Voyage</Navbar.Brand>
+                <Navbar.Brand href="#home" className="mb-1">Bon Voyage</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
