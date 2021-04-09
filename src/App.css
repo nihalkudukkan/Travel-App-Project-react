@@ -1,7 +1,119 @@
 
 @import url(https://unpkg.com/bootstrap@4.1.0/dist/css/bootstrap.min.css);
 
-
+* {
+	box-sizing: border-box;
+  }
 body {
     min-height: 100vh;
+}
+/* button register */
+.register {
+	border:0;
+	background: none;
+	display: block;
+	margin: 20px auto;
+	text-align: center;
+	border:2px solid #2e72cc;
+	padding: 14px 40px;
+	outline: none;
+	color:black;
+	border-radius: 24px;
+	transition:0.25s;	
+	cursor:pointer;
+}
+.register:hover {
+	background: #2e72cc;
+}
+/* button register */
+.welcome {
+    background-image: url(https://i.picsum.photos/id/390/1600/760.jpg?blur=5&hmac=rskUVIO8wq8oKJKbEVwvdV3wGJ3JyxErMJF7S_8nRKc);
+    min-height: 100vh;
+	background-size: cover;
+}
+.box__1 {
+    width:600px;
+	padding:40px;
+    margin-top: 1rem;
+	position: absolute;
+	top: 50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+	background: whitesmoke;
+	text-align: center;
+    border-radius: 10px;
+}
+
+.box__1 h1{
+	color:white;
+	text-transform:uppercase;
+	font-weight:500;
+}
+.box__1 input[type = "text"],.box__1 input[type = "password"]{
+	border:0;
+	background: none;
+	display: block;
+	margin: 20px auto;
+	text-align: center;
+	border:2px solid #3498db;
+	padding: 14px 10px;
+	width: 200px;
+	outline: none;
+	color:black;
+	border-radius: 24px;
+	transition:0.25s;
+}
+.box__1 input[type = "text"]:focus,.box__1 input[type = "password"]:focus{
+	width: 280px;
+	border-color: #2ecc71;
+}
+.box__1 button[type="submit"]{
+	border:0;
+	background: none;
+	display: block;
+	margin: 20px auto;
+	text-align: center;
+	border:2px solid #2ecc71;
+	padding: 14px 40px;
+	outline: none;
+	color:black;
+	border-radius: 24px;
+	transition:0.25s;	
+	cursor:pointer;
+}
+.box__1 button[type="submit"]:hover{
+	background: #2ecc71;
+}
+.create {
+	background-image: url(https://i.picsum.photos/id/450/1600/760.jpg?blur=5&hmac=W3i-Uq9nIsq5dwDeIWkWBKdaiPSek7NuRGbUswm4AmQ);
+	background-size: cover;
+	min-height: 100vh;
+	width: 100%;
+}
+.create .container {
+	background: whitesmoke;
+	border-radius: 15px;
+}
+
+.search {
+	background-image: url(https://i.picsum.photos/id/397/1600/760.jpg?blur=5&hmac=nv51Y-HzEIVitNs8lg6yxavK06yA5Z_EMhFSISGyxO8);
+	background-size: cover;
+	min-height: 100vh;
+	width: 100%;
+}
+.search .container {
+	border-radius: 15px;
+}
+/* user registration */
+.user__reg {
+	background-image: url(https://i.picsum.photos/id/648/1600/760.jpg?blur=5&hmac=gIFzHmV244hubzQ675-Aruoc6D4G3nGCEZlgoox56Bo);
+	background-size: cover;
+	
+}
+
+.user__reg__box {
+	border-radius: 20px;
+	background-color: whitesmoke;
+	margin: 60px;
+	padding-top: 25px;
 }

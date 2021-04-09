@@ -114,9 +114,10 @@ searchUser(name){
                 </Nav>
                 </Navbar.Collapse>
             </Navbar>
-            <div className="container mt-5">
+            <div className="create pt-4">
+            <div className="container mt-5 px-5 pt-5">
                 {/* <button className="btn btn-warning mb-3" onClick={()=>{this.props.history.push(`/homemain/${this.state.name}`)}}>Go Back</button> */}
-                <h1 className="mt-2">Create Travel Plan {this.state.name}</h1>
+                <h1>Create Your Travel Plan</h1>
                 <form onSubmit={this.handleSubmit}>
                     <div class="form-group row">
                         <label for="staticEmail" class="col-sm-2 col-form-label">Name:</label>
@@ -176,6 +177,7 @@ searchUser(name){
                       
                     <input class="btn btn-primary mb-5" type="submit" value="Submit" />
                 </form>
+            </div>
             </div>
             </>
         );

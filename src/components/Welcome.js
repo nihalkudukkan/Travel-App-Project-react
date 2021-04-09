@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import UserDataService from './service/UserDataService';
+import './Welcome.css';
 
 class Welcome extends Component {
     constructor(props) {
@@ -83,11 +84,11 @@ class Welcome extends Component {
     render() { 
         let { username, password } = this.state
         return (
-            <>
+            <div className="welcome">
             <h1 className="display-1 d-flex justify-content-center">Bon Voyage</h1>
-            <div className="border mx-5 py-5">
+            <div className="mx-5 py-5">
                 <h3 className="d-flex justify-content-center">Login</h3>
-                <div className="container">
+                <div className="container box__1">
                     <Formik
                         initialValues={{ username, password }}
                         onSubmit={this.onSubmit}
@@ -114,7 +115,7 @@ class Welcome extends Component {
 
                                     
                                     {/* edits */}
-                                    <button className="btn btn-success mb-4" type="submit" >login</button>
+                                    <button className="mb-4" type="submit" >login</button>
                                     
                                     {/* <button className="btn btn-primary" onClick={() => this.registerUserClicked()}>Register</button> */}
                                 </Form>
@@ -123,11 +124,13 @@ class Welcome extends Component {
                     </Formik>
 
                     <p>Register for new user</p>
-                    <button className="btn btn-primary" onClick={() => this.registerUserClicked()}>Register</button>
+                    <button className="register" onClick={() => this.registerUserClicked()}>Register</button>
+                    {/*  */}
+
 
                 </div>
             </div>
-            </>
+            </div>
         );
     }
 }

@@ -74,8 +74,9 @@ class UserComponent extends Component {
     render() { 
         let { username, password } = this.state
         return (
-            <div>
+            <div className="user__reg">
                 <h1 className="display-1 d-flex justify-content-center">Bon Voyage</h1>
+                <div className="user__reg__box">
                 <h3 className="d-flex justify-content-center">Register</h3>
                 <div className="container">
                     <Formik
@@ -126,6 +127,7 @@ class UserComponent extends Component {
                     <p>Already Registered?</p>
                     <button onClick={()=>{this.props.history.push(`/`)}} className="btn btn-primary mb-5" >Login</button>
 
+                </div>
                 </div>
             </div>
         );

@@ -176,9 +176,10 @@ class SearchUser extends Component {
                 </Nav>
                 </Navbar.Collapse>
             </Navbar>
-            <div className="container mt-5">
+            <div className="search pt-5">
+            <div className="container bg-light mt-5 pb-4">
             {/* <button className="btn btn-warning" onClick={()=>{this.props.history.push(`/homemain/${this.state.name}`)}}>Go Back</button> */}
-            <div className="border py-5 my-2">
+            <div className="py-5 my-5">
                 <h3 className="d-flex justify-content-center">Search for Users or Plans</h3>
                 <div className="container">
                     <Formik
@@ -324,6 +325,7 @@ class SearchUser extends Component {
                     </table>
                     :<p></p>}
             
+            </div>
             </div>
             </>
         );
