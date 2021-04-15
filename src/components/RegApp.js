@@ -24,7 +24,7 @@ class RegApp extends Component {
                     {/* <h1 className="display-1 d-flex justify-content-center my-3">Travel Application</h1> */}
                     <Switch>
                         <Route path="/" exact component={Welcome}/>
-                        <Route path="/home/:name" exact component={Home}/>
+                        {/* <Route path="/home/:name" exact component={Home}/> */}
                         <Route path="/users" component={UserComponent} />
                         <Route path="/userinfo/:name" component={UserInfoChange} />
                         <Route path="/homemain/:name" component={HomeMain} />

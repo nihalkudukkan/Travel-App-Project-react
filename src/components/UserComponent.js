@@ -118,7 +118,7 @@ class UserComponent extends Component {
                                         <Field className="form-control" type="tel" name="phone" pattern="[0-9]{10}" required/>
                                     </fieldset>
                                     {/* edits */}
-                                    <button className="btn btn-success mb-4" type="submit">Save</button>
+                                    <button className="btn btn-success mb-4" type="submit">Register</button>
                                 </Form>
                             )
                         }

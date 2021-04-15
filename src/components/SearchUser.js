@@ -73,7 +73,7 @@ class SearchUser extends Component {
                         temp1:1,
                         connTemp1:0
                         });
-                        console.log(this.state.Plans);
+                        // console.log(this.state.Plans);
                     // this.props.history.push(`/user/${this.state.Categoriesh.username}`);
                     // var countKey = Object.keys(response.data).length;
                     // console.log(countKey);

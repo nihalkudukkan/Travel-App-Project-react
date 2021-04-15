@@ -175,8 +175,8 @@ class FriendList extends Component {
                             i =>
                             <tr key={i.id}>
                                 <td>{i.name}</td>
-                                <button className="btn btn-primary mr-2" onClick={()=>{this.props.history.push(`/showprofile/${this.state.name}/${i.namet}`)}}>Show Profile</button>
-                                <button className="btn btn-primary" onClick={()=>this.showPlansClick(i.name)}>Show Plans</button>
+                                <button className="btn btn-primary mr-2" onClick={()=>{this.props.history.push(`/showprofile/${this.state.name}/${i.name}`)}}>Show Profile</button>
+                                
                             </tr>
                         )
                     }
