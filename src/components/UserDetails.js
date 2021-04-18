@@ -152,7 +152,7 @@ class UserDetails extends Component {
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                    <a>
+                    
                         <div class="card-flyer">
                             <div class="text-box">
                                 <div class="image-box">
@@ -168,7 +168,7 @@ class UserDetails extends Component {
                                 <button className="btn btn-warning mb-3" onClick={() => this.deleteUserClicked()}>Delete</button>
                             </div>
                         </div>
-                    </a>
+                    
                 </div>
                 </div>
                 </div>

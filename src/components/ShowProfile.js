@@ -48,7 +48,7 @@ class ShowProfile extends Component {
             participants:this.state.participants
         }
         
-        if (PlanNotification.participants==0) {
+        if (PlanNotification.participants===0) {
             alert("Cannot send request for zero partcipants");
         } else {
                 this.setState({planNotTemp:ids})
@@ -125,7 +125,7 @@ class ShowProfile extends Component {
                 <div id="cards_landscape_wrap-2">
             <div class="row mt-5">
                 <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                    <a>
+                    
                         <div class="card-flyer">
                             <div class="text-box">
                                 <div class="image-box">
@@ -139,7 +139,7 @@ class ShowProfile extends Component {
                                 </div>
                             </div>
                         </div>
-                    </a>
+                    
                 </div>
                 </div>
                 </div>
@@ -147,14 +147,14 @@ class ShowProfile extends Component {
                 user =>
                 <div class="col-md-6">
 				<div class="media blog-media">
-				  <a><img class="d-flex" src="https://i.picsum.photos/id/406/250/380.jpg?grayscale&hmac=g0rpcuDfLepEMU008-qnAF87LKYMjwUEJk9xGlEwkPE" alt="Generic placeholder image" /></a>
+				  <img class="d-flex" src="https://i.picsum.photos/id/406/250/380.jpg?grayscale&hmac=g0rpcuDfLepEMU008-qnAF87LKYMjwUEJk9xGlEwkPE" alt="" />
 				  <div class="circle">
 				  	{/* <h5 class="day">14 sep</h5>
 				  	<span class="month">sep</span> */}
                       <h5 class="day">{user.startDt}</h5>
 				  </div>
 				  <div class="media-body">
-				    <a href=""><h5 class="mt-0">{user.username}</h5></a>
+				    <h5 class="mt-0">{user.username}</h5>
                     <p>Location: <h5>{user.placeOfStay}</h5></p>
 				    Total Participants: {user.participants}. Days: {user.days}. Travel By {user.modeOfTravel}. Stay: {user.modeOfStay}!
 				    <ul  className="mt-2">

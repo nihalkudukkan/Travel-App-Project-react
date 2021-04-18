@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import UserInfoChange from './UserInfoChange';
-import Home from './Home';
+// import Home from './Home';
 import HomeMain from './HomeMain';
 import UserComponent from './UserComponent';
 // import UserInfo from './UserInfo';

@@ -228,14 +228,14 @@ searchUser(name){
                 <></>:
                 <div class="col-md-6">
 				<div class="media blog-media">
-				  <a><img class="d-flex" src="https://i.picsum.photos/id/406/250/380.jpg?grayscale&hmac=g0rpcuDfLepEMU008-qnAF87LKYMjwUEJk9xGlEwkPE" alt="Generic placeholder image" /></a>
+				  <img class="d-flex" src="https://i.picsum.photos/id/406/250/380.jpg?grayscale&hmac=g0rpcuDfLepEMU008-qnAF87LKYMjwUEJk9xGlEwkPE" alt="" />
 				  <div class="circle">
 				  	{/* <h5 class="day">14 sep</h5>
 				  	<span class="month">sep</span> */}
                       <h5 class="day">{this.state.planOnNotification.startDt}</h5>
 				  </div>
 				  <div class="media-body">
-				    <a><h5 class="mt-0">{this.state.planOnNotification.username}</h5></a>
+				    <h5 class="mt-0">{this.state.planOnNotification.username}</h5>
                     <p>Location: <h5>{this.state.planOnNotification.placeOfStay}</h5></p>
 				    A Journey of {this.state.planOnNotification.participants} people about {this.state.planOnNotification.days} days which include activities such as {this.state.planOnNotification.activities}. Travel By {this.state.planOnNotification.modeOfTravel} and spend night at {this.state.planOnNotification.modeOfStay}!
 				    {/* <a href="blog-post-left-sidebar.html" class="post-link">Read More</a> */}
